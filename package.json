@@ -10,6 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "gh-pages": "^3.1.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
@@ -20,20 +21,23 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint './src/*/**/*.{js,ts,tsx}' --quiet --fix --no-error-on-unmatched-pattern"
+    "lint": "eslint './src/*/**/*.{js,ts,tsx}' --quiet --fix --no-error-on-unmatched-pattern",
+    "lint-ci": "eslint '*/**/*.{js,ts,tsx}' --quiet",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "husky": {
     "hooks": {
-        "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-      "*.{js,ts,tsx}": [
-          "eslint --fix"
-      ]
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
   },
   "browserslist": {
     "production": [
