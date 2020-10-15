@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint './src/*/**/*.{js,ts,tsx}' --quiet --fix --no-error-on-unmatched-pattern"
+    "lint": "eslint './src/*/**/*.{js,ts,tsx}' --quiet --fix --no-error-on-unmatched-pattern",
+    "lint-ci": "eslint '*/**/*.{js,ts,tsx}' --quiet"
   },
   "eslintConfig": {
     "extends": "react-app"
