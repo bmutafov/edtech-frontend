@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Build and Deploy](https://github.com/mutafow/edtech-frontend/workflows/Build%20and%20Deploy/badge.svg)
 
 ## Available Scripts
 
