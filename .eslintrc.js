@@ -20,12 +20,6 @@ module.exports = {
     ],
     rules: {
       "no-console": 1,
-      "no-empty": 2,
-      "no-unreachable": 2,
-      "default-case": 2,
-      "default-case-last": 2,
-      "no-alert": 2,
-      "jsx-quotes": "prefer-single",
       // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
       // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     },
