@@ -1,2 +1,2 @@
 (this["webpackJsonpedtech-frontend"]=this["webpackJsonpedtech-frontend"]||[]).push([[0],{7:function(e,t,n){},8:function(e,t,n){},9:function(e,t,n){"use strict";n.r(t);var a=n(0),r=n.n(a),c=n(2),l=n.n(c),o=(n(7),n(8),function(){return r.a.createElement("div",{className:"App"},r.a.createElement("header",{className:"App-header"},r.a.createElement("p",null,"Boilerplate code for EdTech front-end")))});l.a.render(r.a.createElement(r.a.StrictMode,null,r.a.createElement(o,null)),document.getElementById("root"))}},[[9,1,2]]]);
-//# sourceMappingURL=main.e8a0be1e.chunk.js.map
+//# sourceMappingURL=main.9a20479c.chunk.js.map
