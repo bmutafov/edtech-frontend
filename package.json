@@ -14,11 +14,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-<<<<<<< HEAD
     "bootstrap": "^4.5.3",
-=======
-    "axios": "^0.21.0",
->>>>>>> 29eef3dd1974d2a231d25c8376ca5c0e519f9505
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
