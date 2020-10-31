@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
       <Navbar.Collapse className="justify-content-end"></Navbar.Collapse>
       <Nav.Link>
         <FontAwesomeIcon icon={faIndustry} />
-        For Companies
+        {texts.navleftText}
       </Nav.Link>
       <Button variant="primary" className="button">
         {texts.signinText}
