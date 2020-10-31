@@ -1,15 +1,17 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import useTexts from '../../hooks/useTexts';
 
 const SearchBar: React.FC = () => {
+  const texts = useTexts();
   return (
     <form action="">
       <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
         <div className="input-group">
           <input
             type="search"
-            placeholder="What're you searching for?"
+            placeholder={texts.searchText}
             aria-describedby="button-addon1"
             className="form-control border-0 bg-light"
           ></input>
