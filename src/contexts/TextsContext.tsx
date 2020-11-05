@@ -10,7 +10,7 @@ export const TextsContext = createContext<TextsScheme>(defaultTexts);
 type ReactChildren = { children?: React.ReactNode };
 
 export const TextsContextProvider = ({ children }: ReactChildren): JSX.Element => {
-  const [data] = useGetRequest<TextsScheme>('/texts');
+  const { data } = useGetRequest<TextsScheme>('/texts');
 
   return <TextsContext.Provider value={data || defaultTexts}>{children}</TextsContext.Provider>;
 };

@@ -5,6 +5,7 @@ import useTexts from '../../hooks/useTexts';
 
 const SearchBar: React.FC = () => {
   const texts = useTexts();
+
   return (
     <form action="">
       <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">

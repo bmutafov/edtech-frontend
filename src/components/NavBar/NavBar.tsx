@@ -7,6 +7,7 @@ import './NavBar.css';
 
 const NavBar: React.FC = () => {
   const texts = useTexts();
+
   return (
     <Navbar className="bg-light">
       <Navbar.Brand className="serif" href="#home">
