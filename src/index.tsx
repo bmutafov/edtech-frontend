@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { App } from './components';
 import { TextsContextProvider } from './contexts/TextsContext';
+import Router from './routes/Router';
 
 ReactDOM.render(
   <React.StrictMode>
     <TextsContextProvider>
-      <App />
+      <Router />
     </TextsContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
