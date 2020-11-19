@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 import config from '../config';
 import isDev from '../utils/isDev';
 
-export type PostRequestAction<T> = [(data: T) => void, boolean, string?];
+export interface PostRequestAction<T> {
+  postRequest: (data: T) => void;
+  loading: boolean;
+  error?: string;
+}
 
 /** @description Creates a POST request to the base URI set up in the config file and the endpoint provided as an argument
  * @param {string} endpoint Endpoint to which the POST request is made
@@ -20,7 +24,7 @@ const usePostRequest = <DataType>(endpoint: string): PostRequestAction<DataType>
    * Executes the POST request to the endpoint set in the hook definition
    * @param data The payload of the POST request as an object
    */
-  const doRequest = (data: DataType) => {
+  const postRequest = (data: DataType) => {
     setRequestData(data);
     setIsLoading(true);
     setCalls(calls + 1);
@@ -47,7 +51,7 @@ const usePostRequest = <DataType>(endpoint: string): PostRequestAction<DataType>
     postData();
   }, [calls]);
 
-  return [doRequest, isLoading, error];
+  return { postRequest, loading: isLoading, error };
 };
 
 export default usePostRequest;

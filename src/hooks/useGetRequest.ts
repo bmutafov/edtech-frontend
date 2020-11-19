@@ -3,11 +3,17 @@ import { useEffect, useState } from 'react';
 import config from '../config';
 import isDev from '../utils/isDev';
 
+interface GetRequestResult<T> {
+  data: T | null;
+  loading: boolean;
+  error?: string;
+}
+
 /** @description Creates a GET request to the base URI set up in the config file and the endpoint provided as an argument
  * @param {string} endpoint Endpoint to which the GET request is made
  * @return {Array} The result, loading state and error state as an array which can be destructured
  */
-const useGetRequest = <FetchedData>(endpoint: string): [FetchedData | null, boolean, string?] => {
+const useGetRequest = <FetchedData>(endpoint: string): GetRequestResult<FetchedData> => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [responseData, setResponseData] = useState<FetchedData | null>(null);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -32,7 +38,7 @@ const useGetRequest = <FetchedData>(endpoint: string): [FetchedData | null, bool
     fetchData();
   }, [endpoint]);
 
-  return [responseData, isLoading, error];
+  return { data: responseData, loading: isLoading, error };
 };
 
 export default useGetRequest;
