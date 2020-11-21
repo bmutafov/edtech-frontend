@@ -1,8 +1,19 @@
 const defaultTexts = {
-  searchText: 'What are you searching for',
-  signinText: 'Sign In',
-  edtchText: 'EdTech',
-  navleftText: 'For Companies',
+  // NavBar.tsx
+  navBarTitle: 'EdTech',
+
+  // Hero.tsx
+  heroTitle:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  heroButton: 'Explore products',
+  heroSubtitle: 'Browse products by category',
+
+  // TrendingProducts.tsx
+  trendingProductsTitle: 'Trending products',
+  trendingProductsSubTitle: 'We think you may find those products helpful',
+
+  // RecentReviews.tsx
+  recentReviewsTitle: 'Recent reviews',
 };
 
 export default defaultTexts;
