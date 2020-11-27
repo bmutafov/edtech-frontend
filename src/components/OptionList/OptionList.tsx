@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Hidden, Typography } from '@material-ui/core';
-import {BusinessCenter, Build, SportsSoccer} from '@material-ui/icons';
+import { BusinessCenter, Build, SportsSoccer } from '@material-ui/icons';
 import useTexts from '../../hooks/useTexts';
 import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
 import ProductShowcaseTile from '../ProductShowcaseTile';
