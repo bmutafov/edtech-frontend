@@ -14,6 +14,18 @@ const defaultTexts = {
 
   // RecentReviews.tsx
   recentReviewsTitle: 'Recent reviews',
+
+  // Login.tsx
+  loginUsernameLabel: 'Username',
+  loginUsernamePlaceholder: 'Username or email',
+  loginPasswordLabel: 'Password',
+  loginPasswordPlaceholder: 'Password',
+  loginButtonText: 'Login',
+
+  // NavBarUserActions.tsx
+  navBarUserActionsLogin: 'Login',
+  navBarUserActionsLogout: 'Logout',
+  navBarUserActionsLogoutSnackbarText: 'You successfully logged out!',
 };
 
 export default defaultTexts;
