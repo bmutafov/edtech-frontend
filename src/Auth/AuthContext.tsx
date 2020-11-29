@@ -1,23 +1,7 @@
-import React, { Dispatch, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { createContext } from 'react';
 import config from '../config';
-
-export interface AuthContextState {
-  loggedIn: boolean;
-  authToken?: string;
-}
-
-type AuthContextActionType = 'LOGIN' | 'LOGOUT';
-
-export interface AuthContextActions {
-  type: AuthContextActionType;
-  payload?: Partial<AuthContextState>;
-}
-
-export interface AuthContextReducer {
-  state: AuthContextState;
-  dispatch: Dispatch<AuthContextActions>;
-}
+import { AuthContextState, AuthContextReducer, AuthContextActions } from './AuthContext.types';
 
 const unauthorizedState: AuthContextState = {
   loggedIn: false,
@@ -49,6 +33,9 @@ const reducer = (state: AuthContextState, action: AuthContextActions) => {
   }
 };
 
+/**
+ * Generate initial auth state, based on whether there is JWT token saved in the localStorage or not
+ */
 const getInitialState = (): AuthContextState => {
   const localStorageToken = localStorage.getItem(config.localStorageAuthTokenKey);
 

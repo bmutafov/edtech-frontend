@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { TextField, InputAdornment, Box, Button, LinearProgress } from '@material-ui/core';
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { theme } from '../../utils/theme';
-import useAuthActions from '../../hooks/Auth/useAuthActions';
+import useAuthActions from '../../Auth/useAuthActions';
 import { useHistory } from 'react-router-dom';
 import useTexts from '../../hooks/useTexts';
 

@@ -1,8 +1,8 @@
 import { Button } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import useAuthActions from '../../../hooks/Auth/useAuthActions';
-import useAuthState from '../../../hooks/Auth/useAuthState';
+import useAuthActions from '../../../Auth/useAuthActions';
+import useAuthState from '../../../Auth/useAuthState';
 import useSnackbar from '../../../hooks/useSnackbar';
 import useTexts from '../../../hooks/useTexts';
 

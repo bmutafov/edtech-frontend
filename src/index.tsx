@@ -1,17 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { TextsContextProvider } from './contexts/TextsContext';
-import Router from './routes/Router';
-import { AuthContextProvider } from './contexts/AuthContext';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TextsContextProvider>
-      <AuthContextProvider>
-        <Router />
-      </AuthContextProvider>
-    </TextsContextProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
