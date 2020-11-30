@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import useTexts from '../../hooks/useTexts';
-import { useStyles } from './HeroFc.styles';
-//import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
+import { useStyles } from './HeroForCompany.styles';
 import { theme } from '../../utils/theme';
 
-const HeroFc: React.FC = () => {
+const HeroForCompany: React.FC = () => {
   const classes = useStyles();
   const texts = useTexts();
 
@@ -28,4 +27,4 @@ const HeroFc: React.FC = () => {
   );
 };
 
-export default HeroFc;
+export default HeroForCompany;

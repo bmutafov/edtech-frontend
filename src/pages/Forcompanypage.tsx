@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 import HeroFc from '../components/HeroFc';
 import OptionList from '../components/OptionList';
 
-const Forcompany: React.FC = () => {
+const Forcompanypage: React.FC = () => {
   return (
     <>
       <Container maxWidth="lg" disableGutters>
@@ -15,4 +15,4 @@ const Forcompany: React.FC = () => {
     </>
   );
 };
-export default Forcompany;
+export default Forcompanypage;

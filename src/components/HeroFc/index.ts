@@ -1,1 +1,1 @@
-export { default } from './HeroFc';
+export { default } from './HeroForCompany';
