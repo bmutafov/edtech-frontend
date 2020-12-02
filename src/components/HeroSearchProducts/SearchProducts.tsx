@@ -3,11 +3,13 @@ import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
 import ProductShowcaseGrid from '../ProductShowcaseGrid';
 import Grid from '@material-ui/core/Grid';
 import { useStyles } from './SearchProducts.styles';
-import { AppBar, CssBaseline, Hidden, Toolbar, IconButton, Drawer } from '@material-ui/core';
+import { CssBaseline, Hidden, IconButton, Drawer } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useTheme } from '@material-ui/core/styles';
 import SideBar from '../SideBar';
 import SearchBar from '../SearchBar';
+import NavBar from '../NavBar';
+import { spacing } from '@material-ui/system';
 import useTexts from '../../hooks/useTexts';
 
 // interface Props {
@@ -18,7 +20,6 @@ import useTexts from '../../hooks/useTexts';
 //   window?: () => Window;
 // }
 const SearchProducts: React.FC = () => {
-  const texts = useTexts();
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -29,21 +30,17 @@ const SearchProducts: React.FC = () => {
     <>
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              className={classes.menuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-            {texts.navBarTitle}
-            <SearchBar />
-          </Toolbar>
-        </AppBar>
+
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          className={classes.menuButton}
+        >
+          <MenuIcon />
+        </IconButton>
+
         <nav className={classes.drawer} aria-label="filters">
           <Hidden smUp implementation="css">
             <Drawer
@@ -76,6 +73,7 @@ const SearchProducts: React.FC = () => {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Grid container spacing={3}>
+            <SearchBar />
             {arrayIndexingWithLength(5).map((v) => (
               <Grid item xs={12} key={v}>
                 <ProductShowcaseGrid />

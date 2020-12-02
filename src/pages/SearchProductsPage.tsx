@@ -8,8 +8,8 @@ const SearchProductsPage: React.FC = () => {
     <>
       <Container maxWidth="lg" disableGutters>
         <NavBar />
-        <SearchProducts />
       </Container>
+      <SearchProducts />
     </>
   );
 };
