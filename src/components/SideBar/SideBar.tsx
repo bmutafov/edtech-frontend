@@ -31,8 +31,7 @@ const SideBar: React.FC = () => {
   };
   return (
     <div>
-      <div className={classes.toolbar} />
-      <Divider />
+      <div className={classes.sidenav} />
       <FormControl component="fieldset">
         <FormLabel component="legend">{texts.sideBarTitle}</FormLabel>
         <RadioGroup aria-label="category" name="subcategories" value={value} onChange={handleChange}>
