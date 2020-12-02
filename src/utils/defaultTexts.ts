@@ -22,6 +22,16 @@ const defaultTexts = {
 
   //OptionList.tsx
   optionListTitle: 'Company Options',
+
+  //ProductShowcaseGrid
+  productSGTitle: 'Product',
+  productSGSubtitle: 'By Company',
+  productsSGreview: '1 review',
+  productSGBody: 'lorem ipsum dolor sit amet',
+
+  //SideBar
+  sideBarTitle: 'Category',
+  sideBarSubtitle: 'Price',
 };
 
 export default defaultTexts;
