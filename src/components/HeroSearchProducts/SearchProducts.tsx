@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useTheme } from '@material-ui/core/styles';
 import SideBar from '../SideBar';
 import SearchBar from '../SearchBar';
+import useTexts from '../../hooks/useTexts';
 
 // interface Props {
 //   /**
@@ -17,13 +18,13 @@ import SearchBar from '../SearchBar';
 //   window?: () => Window;
 // }
 const SearchProducts: React.FC = () => {
+  const texts = useTexts();
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const container = Window !== undefined ? () => new Window().document.body : undefined;
   return (
     <>
       <div className={classes.root}>
@@ -39,13 +40,13 @@ const SearchProducts: React.FC = () => {
             >
               <MenuIcon />
             </IconButton>
+            {texts.navBarTitle}
             <SearchBar />
           </Toolbar>
         </AppBar>
         <nav className={classes.drawer} aria-label="filters">
           <Hidden smUp implementation="css">
             <Drawer
-              container={container}
               variant="temporary"
               anchor={theme.direction === 'rtl' ? 'right' : 'left'}
               open={mobileOpen}
