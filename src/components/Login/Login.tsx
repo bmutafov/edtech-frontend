@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { TextField, InputAdornment, Box, Button, LinearProgress } from '@material-ui/core';
+import { TextField, InputAdornment, Box, Button, LinearProgress, Typography } from '@material-ui/core';
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { theme } from '../../utils/theme';
 import useAuthActions from '../../Auth/useAuthActions';
@@ -16,12 +16,16 @@ const Login: React.FC = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<boolean | string>(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const hadnleFormSubmit = async () => {
-    //TODO: Replace this with actual values
     const result = await logIn({ identifier, password });
     if (result.success) {
-      history.push('/');
+      setLoginSuccess(true);
+
+      setTimeout(() => {
+        history.push('/');
+      }, 2000);
     } else {
       setError(result.message);
     }
@@ -40,18 +44,23 @@ const Login: React.FC = () => {
   const loader = useMemo(
     () => (
       <Box marginBottom={theme.spacing.$2}>
-        <LinearProgress />
+        <LinearProgress color={loginSuccess ? 'secondary' : 'primary'} />
       </Box>
     ),
-    []
+    [loginSuccess]
   );
 
   return (
     <Box margin={theme.spacing.$5} display="flex" flexDirection="column" width="300px">
-      {loading && loader}
+      {(loading || loginSuccess) && loader}
       {error && (
         <Box marginY={theme.spacing.$2}>
           <Alert severity="error">{error}</Alert>
+        </Box>
+      )}
+      {loginSuccess && (
+        <Box marginBottom={theme.spacing.$2}>
+          <Alert severity="success">Sucessful login!</Alert>
         </Box>
       )}
       <TextField
