@@ -132,6 +132,70 @@ const AddProduct: React.FC = () => {
             </Grid>
           </Grid>
         </div>
+        <div>
+          <Grid container spacing={3}>
+            <Grid item xs={3}>
+              <label>Development Stage</label>
+            </Grid>
+            <Grid item xs={6}>
+              <Select
+                className={classes.textField}
+                labelId="demo-mutiple-name-label"
+                id="demo-mutiple-name"
+                multiple
+                value={categoryName}
+                onChange={handleChange}
+                input={<Input />}
+                placeholder="Select Category"
+              />
+            </Grid>
+          </Grid>
+        </div>
+        <div>
+          <Grid container spacing={3}>
+            <Grid item xs={3}>
+              <label>Price Range</label>
+            </Grid>
+            <Grid item xs={6}>
+              <Select
+                className={classes.textField}
+                labelId="demo-mutiple-name-label"
+                id="demo-mutiple-name"
+                multiple
+                value={categoryName}
+                onChange={handleChange}
+                input={<Input />}
+                placeholder="Select Category"
+              />
+            </Grid>
+          </Grid>
+        </div>
+        <div>
+          <Grid container spacing={3}>
+            <Grid item xs={3}>
+              <label>Supported Plaforms</label>
+            </Grid>
+            <Grid item xs={6}>
+              <Select
+                className={classes.textField}
+                labelId="demo-mutiple-name-label"
+                id="demo-mutiple-name"
+                multiple
+                value={categoryName}
+                onChange={handleChange}
+                input={<Input />}
+                placeholder="Select Category"
+              />
+            </Grid>
+          </Grid>
+        </div>
+        <div>
+          <Box display="flex" justifyContent="flex-end" m={1} p={1}>
+            <Button variant="outlined" color="primary">
+              Add Product
+            </Button>
+          </Box>
+        </div>
       </Paper>
     </div>
   );

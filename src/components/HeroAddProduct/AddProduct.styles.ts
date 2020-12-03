@@ -13,8 +13,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: 400,
     },
     paper: {
+      margin: 'auto',
+      marginTop: 50,
       padding: theme.spacing(2),
       color: theme.palette.text.secondary,
+      width: '60%',
     },
   })
 );
