@@ -26,6 +26,14 @@ const defaultTexts = {
   navBarUserActionsLogin: 'Login',
   navBarUserActionsLogout: 'Logout',
   navBarUserActionsLogoutSnackbarText: 'You successfully logged out!',
+
+  //HeroFc.tsx
+  herofcTitle: 'Grow yout business better with EdTech',
+  herofcSubtitle: 'Lorem Ipsum dolor sit met',
+  herofcButton: 'Request Demo',
+
+  //OptionList.tsx
+  optionListTitle: 'Company Options',
 };
 
 export default defaultTexts;
