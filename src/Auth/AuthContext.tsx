@@ -1,4 +1,3 @@
-import { parse } from 'path';
 import React, { useReducer } from 'react';
 import { createContext } from 'react';
 import config from '../config';
