@@ -1,7 +1,8 @@
+import { parse } from 'path';
 import React, { useReducer } from 'react';
 import { createContext } from 'react';
 import config from '../config';
-import { AuthContextState, AuthContextReducer, AuthContextActions } from './AuthContext.types';
+import { AuthContextState, AuthContextReducer, AuthContextActions, UserInfo } from './AuthContext.types';
 
 const unauthorizedState: AuthContextState = {
   loggedIn: false,
@@ -33,16 +34,30 @@ const reducer = (state: AuthContextState, action: AuthContextActions) => {
   }
 };
 
+const isUserInfoValid = (storageEntry: string): UserInfo | undefined => {
+  try {
+    const parsed = JSON.parse(storageEntry) as UserInfo;
+
+    if (parsed.email && parsed.id && parsed.username) return parsed;
+    return undefined;
+  } catch {
+    return undefined;
+  }
+};
+
 /**
  * Generate initial auth state, based on whether there is JWT token saved in the localStorage or not
  */
 const getInitialState = (): AuthContextState => {
   const localStorageToken = localStorage.getItem(config.localStorageAuthTokenKey);
+  const localStorageUserInfo = localStorage.getItem(config.localStorageUserInfoKey);
+  const userInfo = isUserInfoValid(localStorageUserInfo || '');
 
-  if (localStorageToken) {
+  if (localStorageToken && userInfo) {
     return {
       loggedIn: true,
       authToken: localStorageToken,
+      userInfo,
     };
   } else {
     return unauthorizedState;

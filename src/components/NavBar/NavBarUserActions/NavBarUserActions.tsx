@@ -1,5 +1,5 @@
-import { Button } from '@material-ui/core';
-import React from 'react';
+import { Box, Button } from '@material-ui/core';
+import React, { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import useAuthActions from '../../../Auth/useAuthActions';
 import useAuthState from '../../../Auth/useAuthState';
@@ -11,31 +11,43 @@ const NavBarUserActions: React.FC = () => {
   const texts = useTexts();
   const [snackBarComponent, openSnackbar] = useSnackbar({ severity: 'success' });
 
-  const authState = useAuthState();
+  const { loggedIn, userInfo } = useAuthState();
   const { logout } = useAuthActions();
-  const { loggedIn } = authState;
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     logout();
     openSnackbar(texts.navBarUserActionsLogoutSnackbarText);
-  };
+  }, [logout, openSnackbar, texts.navBarUserActionsLogoutSnackbarText]);
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     history.push('/login');
-  };
+  }, [history]);
+
+  const loggedInContent = useMemo(
+    () => (
+      <Box>
+        Logged in as: {userInfo?.username}
+        <Button color="inherit" onClick={handleLogout}>
+          {texts.navBarUserActionsLogout}
+        </Button>
+      </Box>
+    ),
+    [handleLogout, texts.navBarUserActionsLogout, userInfo?.username]
+  );
+
+  const loggedOutContent = useMemo(
+    () => (
+      <Button color="inherit" onClick={handleLogin}>
+        {texts.navBarUserActionsLogin}
+      </Button>
+    ),
+    [handleLogin, texts.navBarUserActionsLogin]
+  );
 
   return (
     <>
       {snackBarComponent}
-      {loggedIn ? (
-        <Button color="inherit" onClick={handleLogout}>
-          {texts.navBarUserActionsLogout}
-        </Button>
-      ) : (
-        <Button color="inherit" onClick={handleLogin}>
-          {texts.navBarUserActionsLogin}
-        </Button>
-      )}
+      {loggedIn ? loggedInContent : loggedOutContent}
     </>
   );
 };

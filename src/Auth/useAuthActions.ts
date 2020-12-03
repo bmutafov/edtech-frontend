@@ -3,7 +3,7 @@ import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
 import usePostRequest from '../hooks/usePostRequest';
 import config from '../config';
-import { AuthContextState } from './AuthContext.types';
+import { AuthContextState, UserInfo } from './AuthContext.types';
 
 const useAuthActions = (): AuthActions => {
   const { dispatch } = useContext(AuthContext);
@@ -20,11 +20,19 @@ const useAuthActions = (): AuthActions => {
 
     const authToken = result?.data.jwt;
 
+    const userInfo: UserInfo = {
+      username: result?.data.user.username,
+      email: result?.data.user.email,
+      id: result?.data.user.id,
+    };
+
     localStorage.setItem(config.localStorageAuthTokenKey, authToken);
+    localStorage.setItem(config.localStorageUserInfoKey, JSON.stringify(userInfo));
 
     const payload: AuthContextState = {
       loggedIn: true,
       authToken,
+      userInfo,
     };
     dispatch({ type: 'LOGIN', payload });
     return { success: true };
