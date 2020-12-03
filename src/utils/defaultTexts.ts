@@ -24,10 +24,10 @@ const defaultTexts = {
   optionListTitle: 'Company Options',
 
   //ProductShowcaseGrid
-  productSGTitle: 'Product',
-  productSGSubtitle: 'By Company',
-  productsSGreview: '1 review',
-  productSGBody: 'lorem ipsum dolor sit amet',
+  productShowcaseGridTitle: 'Product',
+  productShowcaseGridSubtitle: 'By Company',
+  productsShowcaseGridreview: '1 review',
+  productShowcaseGridBody: 'lorem ipsum dolor sit amet',
 
   //SideBar
   sideBarTitle: 'Category',

@@ -3,7 +3,7 @@ import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
 import ProductShowcaseGrid from '../ProductShowcaseGrid';
 import Grid from '@material-ui/core/Grid';
 import { useStyles } from './SearchProducts.styles';
-import { AppBar, CssBaseline, Drawer } from '@material-ui/core';
+import { Container, CssBaseline, Drawer } from '@material-ui/core';
 
 import SideBar from '../SideBar';
 import SearchBar from '../SearchBar';
@@ -15,21 +15,20 @@ const SearchProducts: React.FC = () => {
     <>
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <NavBar />
-        </AppBar>
-
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerContainer}>
-            <SideBar />
-          </div>
-        </Drawer>
+        <NavBar />
+        <Container>
+          <Drawer
+            className={classes.drawer}
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerContainer}>
+              <SideBar />
+            </div>
+          </Drawer>
+        </Container>
 
         <main className={classes.content}>
           <Grid container spacing={3}>

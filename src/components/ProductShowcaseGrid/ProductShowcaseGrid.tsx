@@ -20,18 +20,18 @@ const ProductShowcaseGrid: React.FC = () => {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  {texts.productSGTitle}
+                  {texts.productShowcaseGridTitle}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  {texts.productSGSubtitle}
+                  {texts.productShowcaseGridSubtitle}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  {texts.productSGBody}
+                  {texts.productShowcaseGridBody}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  {texts.productsSGreview}
+                  {texts.productsShowcaseGridreview}
                 </Typography>
               </Grid>
             </Grid>

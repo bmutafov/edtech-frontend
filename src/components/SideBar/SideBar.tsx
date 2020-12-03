@@ -11,12 +11,13 @@ import {
 } from '@material-ui/core';
 import { useStyles } from './SideBar.styles';
 import useTexts from '../../hooks/useTexts';
+import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
 
 const SideBar: React.FC = () => {
   const texts = useTexts();
   const classes = useStyles();
-  const [value, setValue] = React.useState('subcategory');
-  const [state, setState] = React.useState({
+  const [value, setSubCategoryValue] = React.useState('subcategory');
+  const [state, setPriceState] = React.useState({
     premium: false,
     free: false,
     paid: false,
@@ -24,10 +25,10 @@ const SideBar: React.FC = () => {
   const { premium, paid, free } = state;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value);
+    setSubCategoryValue((event.target as HTMLInputElement).value);
   };
   const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setPriceState({ ...state, [event.target.name]: event.target.checked });
   };
   return (
     <div>
@@ -35,9 +36,9 @@ const SideBar: React.FC = () => {
       <FormControl component="fieldset">
         <FormLabel component="legend">{texts.sideBarTitle}</FormLabel>
         <RadioGroup aria-label="category" name="subcategories" value={value} onChange={handleChange}>
-          <FormControlLabel value="subcategory" control={<Radio />} label="Subcategory" />
-          <FormControlLabel value="subcategory1" control={<Radio />} label="Subcategory" />
-          <FormControlLabel value="subcategory2" control={<Radio />} label="Subcategory" />
+          {arrayIndexingWithLength(3).map((v) => (
+            <FormControlLabel value="subcategory" control={<Radio />} label="Subcategory" key={v} />
+          ))}
         </RadioGroup>
       </FormControl>
       <Divider />

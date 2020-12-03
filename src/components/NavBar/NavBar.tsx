@@ -6,7 +6,7 @@ const NavBar: React.FC = () => {
   const texts = useTexts();
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="static">
       <Toolbar>{texts.navBarTitle}</Toolbar>
     </AppBar>
   );

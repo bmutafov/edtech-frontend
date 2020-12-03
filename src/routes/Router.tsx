@@ -9,7 +9,7 @@ const Router: React.FC = () => {
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route exact path="/" component={Homepage} />
       <Route exact path="/company" component={Forcompanypage} />
-      <Route exact path="/searchproducts" component={SearchProductsPage} />
+      <Route exact path="/products" component={SearchProductsPage} />
     </BrowserRouter>
   );
 };
