@@ -10,7 +10,7 @@ const useSnackbar = (options?: SnackbarOptions): [JSX.Element, (snackBarMessage:
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
 
-  const handleClick = (snackBarMessage: string) => {
+  const openSnackbar = (snackBarMessage: string) => {
     setMessage(snackBarMessage);
     setOpen(true);
   };
@@ -31,7 +31,7 @@ const useSnackbar = (options?: SnackbarOptions): [JSX.Element, (snackBarMessage:
     </Snackbar>
   );
 
-  return [snackBar, handleClick];
+  return [snackBar, openSnackbar];
 };
 
 export default useSnackbar;

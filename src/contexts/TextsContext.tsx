@@ -41,5 +41,5 @@ export const TextsContextProvider: React.FC = ({ children }): JSX.Element => {
     );
   }
 
-  return <TextsContext.Provider value={data || defaultTexts}>{children}</TextsContext.Provider>;
+  return <TextsContext.Provider value={{ ...defaultTexts, ...data }}>{children}</TextsContext.Provider>;
 };

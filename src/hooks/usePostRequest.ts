@@ -1,10 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
 import config from '../config';
 import isDev from '../utils/isDev';
 
+axios.defaults.validateStatus = function () {
+  return true;
+};
+
 export type PostRequestAction<T> = [
-  (data: T) => unknown,
+  (data: T) => Promise<AxiosResponse<any> | null>,
   {
     loading: boolean;
     error?: string;

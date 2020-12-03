@@ -9,9 +9,20 @@ export interface RegisterInfo {
   password: string;
 }
 
+interface SuccessResponseData {
+  success: true;
+}
+
+interface ErrorResponseData {
+  success: false;
+  message: string;
+}
+
+export type ResponseData = SuccessResponseData | ErrorResponseData;
+
 export interface AuthActions {
   attemptLogin: {
-    call: (loginInfo: LoginInfo) => Promise<void>;
+    call: (loginInfo: LoginInfo) => Promise<ResponseData>;
     loading: boolean;
   };
   register: {

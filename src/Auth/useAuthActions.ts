@@ -1,4 +1,4 @@
-import { AuthActions, LoginInfo, RegisterInfo } from './useAuthActions.types';
+import { AuthActions, LoginInfo, RegisterInfo, ResponseData } from './useAuthActions.types';
 import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
 import usePostRequest from '../hooks/usePostRequest';
@@ -11,11 +11,14 @@ const useAuthActions = (): AuthActions => {
   const [httpLogin, { loading: loadingLogin }] = usePostRequest<LoginInfo>('/auth/local');
   const [httpRegister, { loading: loadingRegister }] = usePostRequest<RegisterInfo>('/auth/local/register');
 
-  const attemptLogin = async (loginInfo: LoginInfo) => {
+  const attemptLogin = async (loginInfo: LoginInfo): Promise<ResponseData> => {
     const result = await httpLogin(loginInfo);
 
-    // TODO: Confirm login successfull
-    const authToken = 'jwttoken';
+    if (result && result.status >= 400) {
+      return { success: false, message: result.data.message[0].messages[0].message };
+    }
+
+    const authToken = result?.data.jwt;
 
     localStorage.setItem(config.localStorageAuthTokenKey, authToken);
 
@@ -24,12 +27,13 @@ const useAuthActions = (): AuthActions => {
       authToken,
     };
     dispatch({ type: 'LOGIN', payload });
+    return { success: true };
   };
 
   const register = async (registerInfo: RegisterInfo) => {
     const result = await httpRegister(registerInfo);
 
-    //TODO: Confirm register successfull
+    //TODO: Validate response
 
     const payload: AuthContextState = {
       loggedIn: true,
