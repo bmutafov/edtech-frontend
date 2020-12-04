@@ -1,11 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useState } from 'react';
 import config from '../config';
 import isDev from '../utils/isDev';
-
-axios.defaults.validateStatus = function () {
-  return true;
-};
 
 export type PostRequestAction<T> = [
   (data: T) => Promise<AxiosResponse<any> | null>,
@@ -19,7 +15,7 @@ export type PostRequestAction<T> = [
  * @param {string} endpoint Endpoint to which the POST request is made
  * @return {Array} The result, loading state and error state as an array which can be destructured
  */
-const usePostRequest = <DataType>(endpoint: string): PostRequestAction<DataType> => {
+const usePostRequest = <DataType>(endpoint: string, validateStatus?: boolean): PostRequestAction<DataType> => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -29,9 +25,16 @@ const usePostRequest = <DataType>(endpoint: string): PostRequestAction<DataType>
    */
   const postData = async (data: DataType) => {
     setIsLoading(true);
+    const url = config.baseURI + endpoint;
+
     try {
-      const url = config.baseURI + endpoint;
-      return await axios.post(url, data);
+      const options: AxiosRequestConfig | undefined = validateStatus
+        ? {
+            validateStatus: () => true,
+          }
+        : undefined;
+
+      return await axios.post(url, data, options);
     } catch (e) {
       if (isDev()) {
         // eslint-disable-next-line no-console

@@ -21,6 +21,9 @@ const defaultTexts = {
   loginPasswordLabel: 'Password',
   loginPasswordPlaceholder: 'Password',
   loginButtonText: 'Login',
+  loginSuccessfullText: 'Successfully logged in!',
+  loginErrorFieldRequired: 'This field is required',
+  loginErrorMinLength: 'Your password must contain at least 6 characters.',
 
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',

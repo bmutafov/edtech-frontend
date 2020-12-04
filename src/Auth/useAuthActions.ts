@@ -8,34 +8,38 @@ import { AuthContextState, UserInfo } from './AuthContext.types';
 const useAuthActions = (): AuthActions => {
   const { dispatch } = useContext(AuthContext);
 
-  const [httpLogin, { loading: loadingLogin }] = usePostRequest<LoginInfo>('/auth/local');
+  const [httpLogin, { loading: loadingLogin }] = usePostRequest<LoginInfo>('/auth/local', true);
   const [httpRegister, { loading: loadingRegister }] = usePostRequest<RegisterInfo>('/auth/local/register');
 
   const attemptLogin = async (loginInfo: LoginInfo): Promise<ResponseData> => {
     const result = await httpLogin(loginInfo);
 
-    if (result && result.status >= 400) {
-      return { success: false, message: result.data.message[0].messages[0].message };
+    if (!result || result?.status < 200 || result?.status > 300) {
+      return { success: false, message: result?.data.message[0].messages[0].message || 'Service unavailable' };
     }
 
-    const authToken = result?.data.jwt;
+    try {
+      const authToken = result?.data.jwt;
 
-    const userInfo: UserInfo = {
-      username: result?.data.user.username,
-      email: result?.data.user.email,
-      id: result?.data.user.id,
-    };
+      const userInfo: UserInfo = {
+        username: result?.data.user.username,
+        email: result?.data.user.email,
+        id: result?.data.user.id,
+      };
 
-    localStorage.setItem(config.localStorageAuthTokenKey, authToken);
-    localStorage.setItem(config.localStorageUserInfoKey, JSON.stringify(userInfo));
+      localStorage.setItem(config.localStorageAuthTokenKey, authToken);
+      localStorage.setItem(config.localStorageUserInfoKey, JSON.stringify(userInfo));
 
-    const payload: AuthContextState = {
-      loggedIn: true,
-      authToken,
-      userInfo,
-    };
-    dispatch({ type: 'LOGIN', payload });
-    return { success: true };
+      const payload: AuthContextState = {
+        loggedIn: true,
+        authToken,
+        userInfo,
+      };
+      dispatch({ type: 'LOGIN', payload });
+      return { success: true };
+    } catch {
+      return { success: false, message: 'Service unavailable' };
+    }
   };
 
   const register = async (registerInfo: RegisterInfo) => {
