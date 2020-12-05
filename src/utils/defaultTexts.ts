@@ -15,15 +15,32 @@ const defaultTexts = {
   // RecentReviews.tsx
   recentReviewsTitle: 'Recent reviews',
 
-  // Login.tsx
+  // LoginForm.tsx
   loginUsernameLabel: 'Username',
-  loginUsernamePlaceholder: 'Username or email',
+  loginUsernamePlaceholder: 'johndoe',
   loginPasswordLabel: 'Password',
   loginPasswordPlaceholder: 'Password',
   loginButtonText: 'Login',
+  loginCreateAccountButton: 'Register',
   loginSuccessfullText: 'Successfully logged in!',
   loginErrorFieldRequired: 'This field is required',
   loginErrorMinLength: 'Your password must contain at least 6 characters.',
+
+  //RegisterForm.tsx
+  registerEmailLabel: 'Email',
+  registerEmailPlaceholder: 'johndoe@gmail.com',
+  registerUsernameLabel: 'Username',
+  registerUsernamePlaceholder: 'johndoe',
+  registerPasswordLabel: 'Password',
+  registerPasswordPlaceholder: 'Password',
+  registerConfirmPasswordPlaceholder: 'Password',
+  registerConfirmPasswordLabel: 'Confirm Password',
+  registerButtonText: 'Submit',
+  registerSuccessfullText: 'Registration was successfull!',
+  registerErrorFieldRequired: 'This field is required',
+  registerErrorMinLength: 'Your password must contain at least 6 characters.',
+  registerErrorPasswordMatch: "Passwords don't match",
+  registerErrorEmailNotValid: 'Please enter valid email address',
 
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',

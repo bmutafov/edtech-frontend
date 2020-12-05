@@ -4,37 +4,48 @@ import { useContext } from 'react';
 import usePostRequest from '../hooks/usePostRequest';
 import config from '../config';
 import { AuthContextState, UserInfo } from './AuthContext.types';
+import { AxiosResponse } from 'axios';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getPayload = (result: AxiosResponse<any>): AuthContextState => {
+  const authToken: string = result.data.jwt;
+
+  const userInfo: UserInfo = {
+    username: result?.data.user.username,
+    email: result?.data.user.email,
+    id: result?.data.user.id,
+  };
+
+  const payload: AuthContextState = {
+    loggedIn: true,
+    authToken,
+    userInfo,
+  };
+
+  return payload;
+};
+
+const setLocalStorage = (authToken: string, userInfo: UserInfo) => {
+  localStorage.setItem(config.localStorageAuthTokenKey, authToken);
+  localStorage.setItem(config.localStorageUserInfoKey, JSON.stringify(userInfo));
+};
 
 const useAuthActions = (): AuthActions => {
   const { dispatch } = useContext(AuthContext);
 
   const [httpLogin, { loading: loadingLogin }] = usePostRequest<LoginInfo>('/auth/local', true);
-  const [httpRegister, { loading: loadingRegister }] = usePostRequest<RegisterInfo>('/auth/local/register');
+  const [httpRegister, { loading: loadingRegister }] = usePostRequest<RegisterInfo>('/auth/local/register', true);
 
-  const attemptLogin = async (loginInfo: LoginInfo): Promise<ResponseData> => {
-    const result = await httpLogin(loginInfo);
-
-    if (!result || result?.status < 200 || result?.status > 300) {
-      return { success: false, message: result?.data.message[0].messages[0].message || 'Service unavailable' };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleAuthAction = (response: AxiosResponse<any> | null): ResponseData => {
+    if (!response || response?.status < 200 || response?.status > 300 || !response.data.jwt || !response.data.user) {
+      return { success: false, message: response?.data.message[0].messages[0].message || 'Service unavailable' };
     }
 
     try {
-      const authToken = result?.data.jwt;
+      const payload = getPayload(response);
+      setLocalStorage(payload.authToken as string, payload.userInfo as UserInfo);
 
-      const userInfo: UserInfo = {
-        username: result?.data.user.username,
-        email: result?.data.user.email,
-        id: result?.data.user.id,
-      };
-
-      localStorage.setItem(config.localStorageAuthTokenKey, authToken);
-      localStorage.setItem(config.localStorageUserInfoKey, JSON.stringify(userInfo));
-
-      const payload: AuthContextState = {
-        loggedIn: true,
-        authToken,
-        userInfo,
-      };
       dispatch({ type: 'LOGIN', payload });
       return { success: true };
     } catch {
@@ -42,16 +53,14 @@ const useAuthActions = (): AuthActions => {
     }
   };
 
-  const register = async (registerInfo: RegisterInfo) => {
+  const login = async (loginInfo: LoginInfo): Promise<ResponseData> => {
+    const result = await httpLogin(loginInfo);
+    return handleAuthAction(result);
+  };
+
+  const register = async (registerInfo: RegisterInfo): Promise<ResponseData> => {
     const result = await httpRegister(registerInfo);
-
-    //TODO: Validate response
-
-    const payload: AuthContextState = {
-      loggedIn: true,
-      authToken: 'test',
-    };
-    dispatch({ type: 'LOGIN', payload });
+    return handleAuthAction(result);
   };
 
   const logout = () => {
@@ -61,8 +70,8 @@ const useAuthActions = (): AuthActions => {
   };
 
   return {
-    attemptLogin: {
-      call: attemptLogin,
+    login: {
+      call: login,
       loading: loadingLogin,
     },
     register: {

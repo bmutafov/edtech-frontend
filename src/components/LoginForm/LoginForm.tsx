@@ -3,7 +3,7 @@ import { TextField, InputAdornment, Box, Button, LinearProgress } from '@materia
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { theme } from '../../utils/theme';
 import useAuthActions from '../../Auth/useAuthActions';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useTexts from '../../hooks/useTexts';
 import { Alert } from '@material-ui/lab';
 import { useForm } from 'react-hook-form';
@@ -17,8 +17,8 @@ interface Inputs {
 const Login: React.FC = () => {
   const history = useHistory();
   const texts = useTexts();
-  const { attemptLogin } = useAuthActions();
-  const { call: logIn, loading } = attemptLogin;
+  const { login } = useAuthActions();
+  const { call: callLogin, loading } = login;
 
   const [error, setError] = useState<boolean | string>(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -27,7 +27,7 @@ const Login: React.FC = () => {
 
   const hadnleFormSubmit = async ({ username, password }: Inputs) => {
     setError(false);
-    const result = await logIn({ identifier: username, password });
+    const result = await callLogin({ identifier: username, password });
 
     if (result.success) {
       setLoginSuccess(true);
@@ -38,6 +38,10 @@ const Login: React.FC = () => {
     } else {
       setError(result.message);
     }
+  };
+
+  const handleRedirectToRegister = () => {
+    history.push('/register');
   };
 
   const loader = useMemo(
@@ -109,6 +113,9 @@ const Login: React.FC = () => {
           }}
         />
         <Box display="flex" justifyContent="flex-end">
+          <Button variant="outlined" color="secondary" onClick={handleRedirectToRegister}>
+            {texts.loginCreateAccountButton}
+          </Button>
           <Button variant="contained" color="primary" disabled={loading} type="submit">
             {texts.loginButtonText}
           </Button>

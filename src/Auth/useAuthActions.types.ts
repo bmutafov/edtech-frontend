@@ -21,12 +21,12 @@ interface ErrorResponseData {
 export type ResponseData = SuccessResponseData | ErrorResponseData;
 
 export interface AuthActions {
-  attemptLogin: {
+  login: {
     call: (loginInfo: LoginInfo) => Promise<ResponseData>;
     loading: boolean;
   };
   register: {
-    call: (registerInfo: RegisterInfo) => Promise<void>;
+    call: (registerInfo: RegisterInfo) => Promise<ResponseData>;
     loading: boolean;
   };
   logout: () => void;

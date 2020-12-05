@@ -1,9 +1,10 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useState } from 'react';
 import config from '../config';
 import isDev from '../utils/isDev';
 
 export type PostRequestAction<T> = [
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (data: T) => Promise<AxiosResponse<any> | null>,
   {
     loading: boolean;
