@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/edtech-frontend/static/css/main.6e09a2d5.chunk.css",
-    "main.js": "/edtech-frontend/static/js/main.5d5464bc.chunk.js",
-    "main.js.map": "/edtech-frontend/static/js/main.5d5464bc.chunk.js.map",
+    "main.js": "/edtech-frontend/static/js/main.6d2eeb44.chunk.js",
+    "main.js.map": "/edtech-frontend/static/js/main.6d2eeb44.chunk.js.map",
     "runtime-main.js": "/edtech-frontend/static/js/runtime-main.4faad953.js",
     "runtime-main.js.map": "/edtech-frontend/static/js/runtime-main.4faad953.js.map",
-    "static/js/2.9762144b.chunk.js": "/edtech-frontend/static/js/2.9762144b.chunk.js",
-    "static/js/2.9762144b.chunk.js.map": "/edtech-frontend/static/js/2.9762144b.chunk.js.map",
+    "static/js/2.7fd08b98.chunk.js": "/edtech-frontend/static/js/2.7fd08b98.chunk.js",
+    "static/js/2.7fd08b98.chunk.js.map": "/edtech-frontend/static/js/2.7fd08b98.chunk.js.map",
     "index.html": "/edtech-frontend/index.html",
     "static/css/main.6e09a2d5.chunk.css.map": "/edtech-frontend/static/css/main.6e09a2d5.chunk.css.map",
-    "static/js/2.9762144b.chunk.js.LICENSE.txt": "/edtech-frontend/static/js/2.9762144b.chunk.js.LICENSE.txt"
+    "static/js/2.7fd08b98.chunk.js.LICENSE.txt": "/edtech-frontend/static/js/2.7fd08b98.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4faad953.js",
-    "static/js/2.9762144b.chunk.js",
+    "static/js/2.7fd08b98.chunk.js",
     "static/css/main.6e09a2d5.chunk.css",
-    "static/js/main.5d5464bc.chunk.js"
+    "static/js/main.6d2eeb44.chunk.js"
   ]
 }
