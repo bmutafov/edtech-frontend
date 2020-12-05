@@ -3,7 +3,7 @@ import { TextField, InputAdornment, Box, Button, LinearProgress } from '@materia
 import { AccountCircle, Lock } from '@material-ui/icons';
 import { theme } from '../../utils/theme';
 import useAuthActions from '../../Auth/useAuthActions';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import useTexts from '../../hooks/useTexts';
 import { Alert } from '@material-ui/lab';
 import { useForm } from 'react-hook-form';
