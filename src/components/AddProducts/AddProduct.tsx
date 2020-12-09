@@ -1,23 +1,12 @@
 import React from 'react';
-import {
-  TextField,
-  FormControl,
-  FormLabel,
-  FormControlLabel,
-  Typography,
-  Select,
-  Grid,
-  MenuItem,
-  Input,
-  Box,
-  Paper,
-  Button,
-} from '@material-ui/core';
+import { TextField, FormLabel, Typography, Select, Grid, Input, Box, Paper, Button } from '@material-ui/core';
 import { useStyles } from './AddProduct.styles';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import useTexts from '../../hooks/useTexts';
 
 const AddProduct: React.FC = () => {
   const classes = useStyles();
+  const texts = useTexts();
   const [categoryName, setCategoryName] = React.useState<string[]>([]);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
@@ -28,13 +17,13 @@ const AddProduct: React.FC = () => {
       <Paper className={classes.paper}>
         <FormLabel component="legend">
           <Typography variant="h4" gutterBottom>
-            Add Product
+            {texts.addProductFormTitle}
           </Typography>
         </FormLabel>
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Product Name</label>
+              <label>{texts.addProductProductLabel}</label>
             </Grid>
             <Grid item xs={6}>
               <TextField
@@ -49,7 +38,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Category</label>
+              <label>{texts.addProductCategory}</label>
             </Grid>
             <Grid item xs={6}>
               <Select
@@ -68,7 +57,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Group</label>
+              <label>{texts.addProductGroup}</label>
             </Grid>
             <Grid item xs={6}>
               <Select
@@ -87,7 +76,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Description</label>
+              <label>{texts.addProductDescription}</label>
             </Grid>
           </Grid>
         </div>
@@ -108,11 +97,11 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Product Name</label>
+              <label>{texts.addProductProductLabel}</label>
             </Grid>
             <Grid item xs={6}>
               <Button variant="contained">
-                Upload <CloudUploadIcon />
+                {texts.addProductButton} <CloudUploadIcon />
               </Button>
             </Grid>
           </Grid>
@@ -120,7 +109,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Website</label>
+              <label>{texts.addProductWebsite}</label>
             </Grid>
             <Grid item xs={6}>
               <TextField
@@ -135,7 +124,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Development Stage</label>
+              <label>{texts.addProductDevelopment}</label>
             </Grid>
             <Grid item xs={6}>
               <Select
@@ -154,7 +143,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Price Range</label>
+              <label>{texts.addProductPrice}</label>
             </Grid>
             <Grid item xs={6}>
               <Select
@@ -173,7 +162,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <label>Supported Plaforms</label>
+              <label>{texts.addProductsSupportedPlatform}</label>
             </Grid>
             <Grid item xs={6}>
               <Select
@@ -192,7 +181,7 @@ const AddProduct: React.FC = () => {
         <div>
           <Box display="flex" justifyContent="flex-end" m={1} p={1}>
             <Button variant="outlined" color="primary">
-              Add Product
+              {texts.addProductFormTitle}
             </Button>
           </Box>
         </div>

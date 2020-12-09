@@ -22,6 +22,18 @@ const defaultTexts = {
 
   //OptionList.tsx
   optionListTitle: 'Company Options',
+
+  //AddProducts.tsx
+  addProductFormTitle: 'Add Products',
+  addProductProductLabel: 'Product Name',
+  addProductCategory: 'Category',
+  addProductGroup: 'Group',
+  addProductDescription: 'Description',
+  addProductButton: 'Upload',
+  addProductPrice: 'Price Range',
+  addProductWebsite: 'Website',
+  addProductDevelopment: 'Development Stage',
+  addProductsSupportedPlatform: 'Supported Platforms',
 };
 
 export default defaultTexts;
