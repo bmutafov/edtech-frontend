@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { TextsContextProvider } from './contexts/TextsContext';
-import Router from './routes/Router';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <TextsContextProvider>
-      <Router />
-    </TextsContextProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
