@@ -1,3 +1,5 @@
+import materialUITheme from '../config/materialUITheme';
+
 interface ThemeSpacing {
   $1: 1;
   $2: 2;
@@ -26,4 +28,5 @@ const spacing: ThemeSpacing = {
 
 export const theme = {
   spacing,
+  colors: materialUITheme.palette,
 };

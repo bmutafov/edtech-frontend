@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { createContext } from 'react';
-import config from '../config';
+import config from '../config/config';
 import { AuthContextState, AuthContextReducer, AuthContextActions, UserInfo } from './AuthContext.types';
 
 const unauthorizedState: AuthContextState = {

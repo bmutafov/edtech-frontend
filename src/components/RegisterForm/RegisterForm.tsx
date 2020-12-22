@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import useTexts from '../../hooks/useTexts';
 import { Alert } from '@material-ui/lab';
 import { useForm } from 'react-hook-form';
-import config from '../../config';
+import config from '../../config/config';
 
 interface Inputs {
   email: string;

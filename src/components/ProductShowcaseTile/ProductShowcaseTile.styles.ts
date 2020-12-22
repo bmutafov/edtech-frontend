@@ -2,14 +2,23 @@ import { makeStyles } from '@material-ui/styles';
 
 export const useStyles = makeStyles({
   paper: {
-    padding: 10,
-    width: 240,
-    boxShadow: 'none',
-    border: '1px solid #cccccc',
+    transition: '0.3s',
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+      cursor: 'pointer',
+    },
   },
   image: {
-    width: 220,
-    height: 200,
+    width: 150,
+    height: 150,
     background: '#cccccc',
+  },
+  productTitle: {
+    fontWeight: 400,
+    fontSize: '18px',
+  },
+  productCategory: {
+    fontWeight: 300,
+    fontSize: '14px',
   },
 });

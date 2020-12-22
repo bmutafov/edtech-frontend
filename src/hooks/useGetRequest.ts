@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import config from '../config';
+import config from '../config/config';
 import isDev from '../utils/isDev';
 
 interface GetRequestResult<T> {

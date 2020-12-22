@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useState } from 'react';
-import config from '../config';
+import config from '../config/config';
 import isDev from '../utils/isDev';
 
 export type PostRequestAction<T> = [
