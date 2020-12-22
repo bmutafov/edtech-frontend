@@ -2,7 +2,7 @@ import { AuthActions, LoginInfo, RegisterInfo, ResponseData } from './useAuthAct
 import { AuthContext } from './AuthContext';
 import { useContext } from 'react';
 import usePostRequest from '../hooks/usePostRequest';
-import config from '../config';
+import config from '../config/config';
 import { AuthContextState, UserInfo } from './AuthContext.types';
 import { AxiosResponse } from 'axios';
 
