@@ -5,6 +5,7 @@ import useAuthActions from '../../../Auth/useAuthActions';
 import useAuthState from '../../../Auth/useAuthState';
 import useSnackbar from '../../../hooks/useSnackbar';
 import useTexts from '../../../hooks/useTexts';
+import { theme } from '../../../utils/theme';
 
 const NavBarUserActions: React.FC = () => {
   const history = useHistory();
@@ -23,11 +24,15 @@ const NavBarUserActions: React.FC = () => {
     history.push('/login');
   }, [history]);
 
+  const handleRegister = useCallback(() => {
+    history.push('/register');
+  }, [history]);
+
   const loggedInContent = useMemo(
     () => (
       <Box>
         Logged in as: {userInfo?.username}
-        <Button color="inherit" onClick={handleLogout}>
+        <Button color="secondary" variant="outlined" onClick={handleLogout}>
           {texts.navBarUserActionsLogout}
         </Button>
       </Box>
@@ -37,11 +42,18 @@ const NavBarUserActions: React.FC = () => {
 
   const loggedOutContent = useMemo(
     () => (
-      <Button color="inherit" onClick={handleLogin}>
-        {texts.navBarUserActionsLogin}
-      </Button>
+      <Box display="flex" flexDirection="row">
+        <Button color="inherit" onClick={handleRegister}>
+          {texts.navBarUserActionsSignUp}
+        </Button>
+        <Box marginLeft={theme.spacing.$2}>
+          <Button color="secondary" variant="outlined" onClick={handleLogin}>
+            {texts.navBarUserActionsLogin}
+          </Button>
+        </Box>
+      </Box>
     ),
-    [handleLogin, texts.navBarUserActionsLogin]
+    [handleLogin, handleRegister, texts.navBarUserActionsLogin, texts.navBarUserActionsSignUp]
   );
 
   return (

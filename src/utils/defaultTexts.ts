@@ -3,8 +3,7 @@ const defaultTexts = {
   navBarTitle: 'EdTech',
 
   // Hero.tsx
-  heroTitle:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  heroTitle: 'Find the right products  for your academics needs',
   heroButton: 'Explore products',
   heroSubtitle: 'Browse products by category',
 
@@ -44,6 +43,7 @@ const defaultTexts = {
 
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',
+  navBarUserActionsSignUp: 'Sign up',
   navBarUserActionsLogout: 'Logout',
   navBarUserActionsLogoutSnackbarText: 'You successfully logged out!',
 
@@ -64,6 +64,14 @@ const defaultTexts = {
   //SideBar
   sideBarTitle: 'Category',
   sideBarSubtitle: 'Price',
+
+  //Footer.tsx
+  footerText: 'Edtech copyright reserverd 2020',
+
+  //NavBarLinks.tsx
+  navBarLinksHome: 'Home',
+  navBarLinksForCompanies: 'For companies',
+  navBarLinksProducts: 'Products',
 };
 
 export default defaultTexts;
