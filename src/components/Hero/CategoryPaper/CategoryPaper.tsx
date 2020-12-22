@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Grid, Paper } from '@material-ui/core';
 import { Category } from '@material-ui/icons';
 import React, { useState } from 'react';
 
