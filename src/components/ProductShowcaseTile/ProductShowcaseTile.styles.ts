@@ -4,7 +4,7 @@ export const useStyles = makeStyles({
   paper: {
     transition: '0.3s',
     '&:hover': {
-      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+      backgroundColor: 'transparent',
       cursor: 'pointer',
     },
   },

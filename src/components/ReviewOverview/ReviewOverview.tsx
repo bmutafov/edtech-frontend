@@ -14,6 +14,7 @@ interface ReviewProps {
 }
 
 const ReviewOverview: React.FC<ReviewProps> = ({ accountName, jobTitle, rating, productName, text }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const classes = useStyles();
 
   return (
@@ -30,7 +31,7 @@ const ReviewOverview: React.FC<ReviewProps> = ({ accountName, jobTitle, rating, 
             <Typography variant="subtitle2"> on {productName}</Typography>
           </Box>
         </Box>
-        <ReviewQuote text="this is a review text string" />
+        <ReviewQuote text={text} />
       </Box>
     </Box>
   );
