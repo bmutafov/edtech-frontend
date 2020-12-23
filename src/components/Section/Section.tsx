@@ -13,7 +13,7 @@ const Section: React.FC<SectionProps> = ({ title, children, animate = false }) =
 
   const sectionContent = useMemo(
     () => (
-      <Box display="flex" flexDirection="column">
+      <Box display="flex" flexDirection="column" width="100%">
         <Typography variant="h2" align="center" className={classes.title}>
           {title}
         </Typography>

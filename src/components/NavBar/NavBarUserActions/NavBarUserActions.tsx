@@ -1,63 +1,106 @@
-import { Box, Button } from '@material-ui/core';
-import React, { useCallback, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Avatar, Box, Button, Dialog, DialogActions, DialogTitle, IconButton } from '@material-ui/core';
+import { EmojiPeople, ExitToApp, PersonAdd } from '@material-ui/icons';
+import React, { useCallback, useMemo, useState } from 'react';
 import useAuthActions from '../../../Auth/useAuthActions';
 import useAuthState from '../../../Auth/useAuthState';
 import useSnackbar from '../../../hooks/useSnackbar';
 import useTexts from '../../../hooks/useTexts';
 import { theme } from '../../../utils/theme';
+import Login from '../../LoginForm';
+import RegisterForm from '../../RegisterForm';
+import ModalForm from './ModalForm/ModalForm';
 
 const NavBarUserActions: React.FC = () => {
-  const history = useHistory();
   const texts = useTexts();
   const [snackBarComponent, openSnackbar] = useSnackbar({ severity: 'success' });
-
   const { loggedIn, userInfo } = useAuthState();
   const { logout } = useAuthActions();
 
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+  const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
+
+  const handleSwitchToRegister = useCallback(() => {
+    setIsLoginDialogOpen(false);
+    setIsRegisterDialogOpen(true);
+  }, []);
+
   const handleLogout = useCallback(() => {
     logout();
+    setIsLogoutDialogOpen(false);
     openSnackbar(texts.navBarUserActionsLogoutSnackbarText);
   }, [logout, openSnackbar, texts.navBarUserActionsLogoutSnackbarText]);
 
-  const handleLogin = useCallback(() => {
-    history.push('/login');
-  }, [history]);
-
-  const handleRegister = useCallback(() => {
-    history.push('/register');
-  }, [history]);
+  const confirmLogoutDialog = useMemo(() => {
+    return (
+      <Dialog open={isLogoutDialogOpen} onClose={() => setIsLogoutDialogOpen(false)}>
+        <DialogTitle>{texts.navBarUserActionsConfirmLogoutTitle}</DialogTitle>
+        <DialogActions>
+          <Button onClick={() => setIsLogoutDialogOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleLogout} color="secondary" variant="contained" disableElevation autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }, [handleLogout, isLogoutDialogOpen, texts.navBarUserActionsConfirmLogoutTitle]);
 
   const loggedInContent = useMemo(
     () => (
-      <Box>
-        Logged in as: {userInfo?.username}
-        <Button color="secondary" variant="outlined" onClick={handleLogout}>
-          {texts.navBarUserActionsLogout}
-        </Button>
+      <Box display="flex" alignItems="center">
+        <Avatar>{userInfo?.username.charAt(0).toUpperCase()}</Avatar>
+        <Box marginLeft={theme.spacing.$1}>
+          <IconButton color="secondary" onClick={() => setIsLogoutDialogOpen(true)}>
+            <ExitToApp />
+          </IconButton>
+        </Box>
       </Box>
     ),
-    [handleLogout, texts.navBarUserActionsLogout, userInfo?.username]
+    [userInfo?.username]
   );
 
   const loggedOutContent = useMemo(
     () => (
       <Box display="flex" flexDirection="row">
-        <Button color="inherit" onClick={handleRegister}>
+        <Button color="inherit" onClick={() => setIsRegisterDialogOpen(true)}>
           {texts.navBarUserActionsSignUp}
         </Button>
         <Box marginLeft={theme.spacing.$2}>
-          <Button color="secondary" variant="outlined" onClick={handleLogin}>
+          <Button color="secondary" variant="outlined" onClick={() => setIsLoginDialogOpen(true)}>
             {texts.navBarUserActionsLogin}
           </Button>
         </Box>
       </Box>
     ),
-    [handleLogin, handleRegister, texts.navBarUserActionsLogin, texts.navBarUserActionsSignUp]
+    [texts.navBarUserActionsLogin, texts.navBarUserActionsSignUp]
   );
 
   return (
     <>
+      {confirmLogoutDialog}
+      <ModalForm
+        isOpen={isLoginDialogOpen}
+        onClose={() => setIsLoginDialogOpen(false)}
+        sectionTitle={texts.navBarUserActionsSectionTitleLogin}
+        sidebarIcon={<EmojiPeople style={{ fontSize: 160 }} />}
+        sidebarTitle={texts.navBarUserActionsLoginModalSidebarTitle}
+        sidebarDescription={texts.navBarUserActionsLoginModalSidebarDescription}
+      >
+        <Login onRegisterClick={handleSwitchToRegister} onSuccess={() => setIsLoginDialogOpen(false)} />
+      </ModalForm>
+      <ModalForm
+        isOpen={isRegisterDialogOpen}
+        onClose={() => setIsRegisterDialogOpen(false)}
+        sectionTitle={texts.navBarUserActionsSectionTitleRegister}
+        sidebarIcon={<PersonAdd style={{ fontSize: 160 }} />}
+        sidebarTitle={texts.navBarUserActionsRegisterModalSidebarTitle}
+        sidebarDescription={texts.navBarUserActionsRegisterModalSidebarDescription}
+        maxWidth="lg"
+      >
+        <RegisterForm onSuccess={() => setIsRegisterDialogOpen(false)} />
+      </ModalForm>
       {snackBarComponent}
       {loggedIn ? loggedInContent : loggedOutContent}
     </>
