@@ -66,6 +66,10 @@ const defaultTexts = {
   addProductWebsite: 'Website',
   addProductDevelopment: 'Development Stage',
   addProductsSupportedPlatform: 'Supported Platforms',
+  addProductsSelectPlaceholder: 'Select Category',
+  addProductsWebsitePlaceholder: 'Link to Website',
+  addProductsLabelPlaceholder: 'What is the official name of your product',
+
   //ProductShowcaseGrid
   productShowcaseGridTitle: 'Product',
   productShowcaseGridSubtitle: 'By Company',

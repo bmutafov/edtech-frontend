@@ -30,7 +30,7 @@ const AddProduct: React.FC = () => {
                 className={classes.textField}
                 required
                 id="standard-full-width"
-                placeholder="What is the official name of your product"
+                placeholder={texts.addProductsLabelPlaceholder}
               />
             </Grid>
           </Grid>
@@ -44,12 +44,12 @@ const AddProduct: React.FC = () => {
               <Select
                 className={classes.textField}
                 labelId="demo-mutiple-name-label"
-                id="demo-mutiple-name"
+                id="productCategory"
                 multiple
                 value={categoryName}
                 onChange={handleChange}
                 input={<Input />}
-                placeholder="Select Category"
+                placeholder={texts.addProductsSelectPlaceholder}
               />
             </Grid>
           </Grid>
@@ -63,12 +63,12 @@ const AddProduct: React.FC = () => {
               <Select
                 className={classes.textField}
                 labelId="demo-mutiple-name-label"
-                id="demo-mutiple-name"
+                id="productGroup"
                 multiple
                 value={categoryName}
                 onChange={handleChange}
                 input={<Input />}
-                placeholder="Select Category"
+                placeholder={texts.addProductsSelectPlaceholder}
               />
             </Grid>
           </Grid>
@@ -85,7 +85,7 @@ const AddProduct: React.FC = () => {
             <Grid item xs={8}>
               <TextField
                 className={classes.textBox}
-                id="outlined-multiline-static"
+                id="description"
                 multiline
                 rows={4}
                 defaultValue="Lorem Ipsum"
@@ -115,8 +115,8 @@ const AddProduct: React.FC = () => {
               <TextField
                 className={classes.textField}
                 required
-                id="standard-full-width"
-                placeholder="Link to the product's website"
+                id="productsWebsite"
+                placeholder={texts.addProductsWebsitePlaceholder}
               />
             </Grid>
           </Grid>
@@ -130,12 +130,12 @@ const AddProduct: React.FC = () => {
               <Select
                 className={classes.textField}
                 labelId="demo-mutiple-name-label"
-                id="demo-mutiple-name"
+                id="productDevelopment"
                 multiple
                 value={categoryName}
                 onChange={handleChange}
                 input={<Input />}
-                placeholder="Select Category"
+                placeholder={texts.addProductsSelectPlaceholder}
               />
             </Grid>
           </Grid>
@@ -149,12 +149,12 @@ const AddProduct: React.FC = () => {
               <Select
                 className={classes.textField}
                 labelId="demo-mutiple-name-label"
-                id="demo-mutiple-name"
+                id="addPrice"
                 multiple
                 value={categoryName}
                 onChange={handleChange}
                 input={<Input />}
-                placeholder="Select Category"
+                placeholder={texts.addProductsSelectPlaceholder}
               />
             </Grid>
           </Grid>
@@ -168,12 +168,12 @@ const AddProduct: React.FC = () => {
               <Select
                 className={classes.textField}
                 labelId="demo-mutiple-name-label"
-                id="demo-mutiple-name"
+                id="addSupportedPlatform"
                 multiple
                 value={categoryName}
                 onChange={handleChange}
                 input={<Input />}
-                placeholder="Select Category"
+                placeholder={texts.addProductsSelectPlaceholder}
               />
             </Grid>
           </Grid>
