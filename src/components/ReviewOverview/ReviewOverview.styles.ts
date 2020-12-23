@@ -5,5 +5,6 @@ export const useStyles = makeStyles({
     width: 45,
     height: 45,
     background: '#cccccc',
+    borderRadius: '50%',
   },
 });
