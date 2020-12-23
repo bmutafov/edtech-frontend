@@ -2,10 +2,9 @@ import { makeStyles } from '@material-ui/styles';
 
 export const useStyles = makeStyles({
   heroBackground: {
-    backgroundImage:
-      'linear-gradient(90deg, rgba(238,213,249,1) 0%, rgba(248,231,255,1) 33%, rgba(251,243,255,1) 100%)',
+    backgroundImage: 'linear-gradient(137deg, rgba(229,170,255,1) 0%, rgba(249,236,255,1) 100%)',
     backgroundSize: '400% 400%',
-    animation: 'gradient 15s ease infinite',
+    animation: '$gradient 15s ease infinite',
   },
   '@keyframes gradient': {
     '0%': {
