@@ -11,9 +11,7 @@ const Router: React.FC = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Route exact path="/" component={Homepage} />
-
-      <Route exact path="/products/addproduct" component={AddProductPage} />
-
+      <Route exact path="/products/new" component={AddProductPage} />
       <Route exact path="/login" component={LoginForm} />
       <Route exact path="/register" component={RegisterForm} />
       <Route exact path="/company" component={ForCompanyPage} />
