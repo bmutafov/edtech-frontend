@@ -69,6 +69,21 @@ const defaultTexts = {
   //OptionList.tsx
   optionListTitle: 'Company Options',
 
+  //AddProducts.tsx
+  addProductFormTitle: 'Add Products',
+  addProductProductLabel: 'Product Name',
+  addProductCategory: 'Category',
+  addProductGroup: 'Group',
+  addProductDescription: 'Description',
+  addProductButton: 'Upload',
+  addProductPrice: 'Price Range',
+  addProductWebsite: 'Website',
+  addProductDevelopment: 'Development Stage',
+  addProductsSupportedPlatform: 'Supported Platforms',
+  addProductsSelectPlaceholder: 'Select Category',
+  addProductsWebsitePlaceholder: 'Link to Website',
+  addProductsLabelPlaceholder: 'What is the official name of your product',
+
   //ProductShowcaseGrid
   productShowcaseGridTitle: 'Product',
   productShowcaseGridSubtitle: 'By Company',
