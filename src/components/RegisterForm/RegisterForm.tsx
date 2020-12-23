@@ -3,7 +3,6 @@ import { TextField, InputAdornment, Box, Button, LinearProgress, Divider, MenuIt
 import { AccountCircle, Lock, Email, Phone, AccountBalance, Work } from '@material-ui/icons';
 import { theme } from '../../utils/theme';
 import useAuthActions from '../../Auth/useAuthActions';
-import { useHistory } from 'react-router-dom';
 import useTexts from '../../hooks/useTexts';
 import { Alert } from '@material-ui/lab';
 import { useForm } from 'react-hook-form';
