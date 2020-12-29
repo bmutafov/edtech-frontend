@@ -2,10 +2,18 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    // necessary for content to be below app bar
-    sidenav: {
-      toolbar: theme.mixins.toolbar,
-      padding: theme.spacing(5),
+    formControl: {
+      marginBottom: theme.spacing(2),
+    },
+    buttonBox: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      gap: theme.spacing(2),
+      background: '#fafafa',
+      padding: theme.spacing(2),
+    },
+    filterTitle: {
+      marginBottom: theme.spacing(3),
     },
   })
 );

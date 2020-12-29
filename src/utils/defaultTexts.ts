@@ -86,11 +86,12 @@ const defaultTexts = {
 
   //ProductShowcaseGrid
   productShowcaseGridTitle: 'Product',
-  productShowcaseGridSubtitle: 'By Company',
-  productsShowcaseGridreview: '1 review',
-  productShowcaseGridBody: 'lorem ipsum dolor sit amet',
+  productShowcaseByCompanyPrefix: 'By',
+  productsShowcaseGridreview: 'reviews',
+  productShowcaseViewButtonText: 'View',
 
   //SideBar
+  sidebarFiltersText: 'Filters',
   sideBarTitle: 'Category',
   sideBarSubtitle: 'Price',
 

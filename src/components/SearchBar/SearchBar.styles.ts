@@ -1,16 +1,14 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles((theme: Theme) =>
+export const useStyles = makeStyles(() =>
   createStyles({
     root: {
       padding: '2px 4px',
       display: 'flex',
       alignItems: 'center',
-      width: 400,
     },
     input: {
-      marginLeft: theme.spacing(1),
-      flex: 1,
+      backgroundColor: 'white',
     },
     iconButton: {
       padding: 10,

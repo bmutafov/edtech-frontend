@@ -6,18 +6,22 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     paper: {
+      background: '#fcfcfc',
       padding: theme.spacing(2),
-      maxWidth: 650,
-    },
-    image: {
-      width: 128,
-      height: 128,
     },
     img: {
       margin: 'auto',
       display: 'block',
       maxWidth: '100%',
       maxHeight: '100%',
+      borderRadius: '5px',
+    },
+    flexWrap: {
+      display: 'flex',
+      gap: theme.spacing(2),
+      width: '100%',
+      height: '100%',
+      flexWrap: 'wrap',
     },
   })
 );
