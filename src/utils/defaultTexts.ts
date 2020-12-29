@@ -94,6 +94,8 @@ const defaultTexts = {
   sidebarFiltersText: 'Filters',
   sideBarTitle: 'Category',
   sideBarSubtitle: 'Price',
+  sideBarResetButton: 'Reset all',
+  sideBarApplyButton: 'Apply',
 
   //Footer.tsx
   footerText: 'Edtech copyright reserverd 2020',

@@ -90,10 +90,10 @@ const SideBar: React.FC = () => {
         </FormGroup>
       </FormControl>
       <Box className={classes.buttonBox}>
-        <Button onClick={handleResetAll}>Reset all</Button>
+        <Button onClick={handleResetAll}>{texts.sideBarResetButton}</Button>
 
         <Button variant="contained" color="primary" disableElevation>
-          Apply
+          {texts.sideBarApplyButton}
         </Button>
       </Box>
     </Box>
