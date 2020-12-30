@@ -24,5 +24,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       padding: theme.spacing(15),
     },
+    flexContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: theme.spacing(2),
+    },
   })
 );

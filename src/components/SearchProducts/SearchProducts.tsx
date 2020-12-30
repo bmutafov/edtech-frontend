@@ -1,51 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
 import ProductShowcaseGrid from '../ProductShowcaseGrid';
-import Grid from '@material-ui/core/Grid';
 import { useStyles } from './SearchProducts.styles';
-import { Box, CssBaseline, Drawer } from '@material-ui/core';
+import { Box, LinearProgress } from '@material-ui/core';
+import InfiniteScroll from 'react-infinite-scroller';
 
 import SideBar from '../SideBar';
 import SearchBar from '../SearchBar';
-import NavBar from '../NavBar';
+import { theme } from '../../utils/theme';
+import useResponsive from '../../hooks/useResponsive';
+
 const SearchProducts: React.FC = () => {
   const classes = useStyles();
+  const { isTabletOrMobile } = useResponsive();
+
+  // ! Temporary till we fetch real data
+  const [itemCount, setItemCount] = useState(5);
+
+  const loadMore = () => {
+    setTimeout(() => setItemCount((prev) => prev + 10), 1000);
+  };
 
   return (
-    <>
-      <NavBar />
-      <div className={classes.root}>
-        <CssBaseline />
-
-        <Box display="flex">
-          <Box flex={1}>
-            <Drawer
-              className={classes.drawer}
-              variant="permanent"
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-            >
-              <div className={classes.drawerContainer}>
-                <SideBar />
-              </div>
-            </Drawer>
-          </Box>
-          <Box flex={5}>
-            <main className={classes.content}>
-              <Grid container spacing={3}>
-                <SearchBar />
-                {arrayIndexingWithLength(5).map((v) => (
-                  <Grid item xs={12} key={v}>
-                    <ProductShowcaseGrid />
-                  </Grid>
-                ))}
-              </Grid>
-            </main>
-          </Box>
+    <Box
+      bgcolor="white"
+      display="flex"
+      flexDirection={isTabletOrMobile ? 'column' : 'row'}
+      padding={theme.spacing.$3}
+      paddingTop={theme.spacing.$3}
+    >
+      <Box flex={1}>
+        <SideBar />
+      </Box>
+      <Box flex={3}>
+        <Box marginBottom={theme.spacing.$3}>
+          <SearchBar />
         </Box>
-      </div>
-    </>
+        <Box className={classes.flexContainer}>
+          Showing {itemCount} results
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={loadMore}
+            hasMore={itemCount < 30}
+            loader={<LinearProgress color="secondary" key={0} />}
+          >
+            {arrayIndexingWithLength(itemCount).map((v) => (
+              <ProductShowcaseGrid key={v} />
+            ))}
+          </InfiniteScroll>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
