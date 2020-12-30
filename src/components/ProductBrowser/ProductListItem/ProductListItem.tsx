@@ -1,19 +1,33 @@
 import React, { useMemo } from 'react';
 import { Paper, Typography, ButtonBase, Box, Button, Link, Hidden } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import { useStyles } from './ProductShowcaseGrid.styles';
-import useTexts from '../../hooks/useTexts';
+import { useStyles } from './ProductListItem.styles';
+import useTexts from '../../../hooks/useTexts';
 import { Fade } from 'react-awesome-reveal';
-import useResponsive from '../../hooks/useResponsive';
-import { theme } from '../../utils/theme';
+import useResponsive from '../../../hooks/useResponsive';
+import { theme } from '../../../utils/theme';
 
-const ProductShowcaseGrid: React.FC = () => {
+interface Props {
+  title?: string;
+  byUser?: string;
+  description?: string;
+  rating?: number;
+  reviews?: number;
+}
+
+const getShortDescription = (description = ''): string => {
+  const MAX_SIZE = 100;
+  if (description.length < MAX_SIZE) return description;
+  else return description.substring(0, MAX_SIZE) + '...';
+};
+
+const ProductListItem: React.FC<Props> = ({ title, byUser, description, rating, reviews }) => {
   const classes = useStyles();
   const texts = useTexts();
   const { isTabletOrMobile } = useResponsive();
   const imageSize = isTabletOrMobile ? 80 : 150;
 
-  const rating = useMemo(() => <Rating name="rating" readOnly value={Math.round(Math.random() * 5)} />, []);
+  const ratingComponent = useMemo(() => <Rating name="rating" precision={0.5} readOnly value={rating} />, [rating]);
 
   return (
     <Fade direction="up" duration={500}>
@@ -30,33 +44,30 @@ const ProductShowcaseGrid: React.FC = () => {
           </ButtonBase>
           <Box marginBottom={theme.spacing.$1} flex={5} display="flex" flexDirection="column">
             <Link href="#" variant="h6" color="inherit" display="block">
-              Product Title
+              {title}
             </Link>
             <Typography variant="caption" color="textSecondary" gutterBottom>
               {texts.productShowcaseByCompanyPrefix}{' '}
               <Link href="#" color="inherit">
-                company name
+                {byUser}
               </Link>
             </Typography>
-            <Hidden mdUp>{rating}</Hidden>
+            <Hidden mdUp>{ratingComponent}</Hidden>
             <Hidden smDown>
               <Typography variant="body2" gutterBottom>
-                Shortened version of the product description here.
+                {getShortDescription(description)}
               </Typography>
             </Hidden>
           </Box>
 
-          <Hidden mdUp>
-            Shortened version of the product description here.Shortened version of the product description
-            here.Shortened version of the product description here.Shortened version of the product description here.
-          </Hidden>
+          <Hidden mdUp>{getShortDescription(description)}</Hidden>
 
           <Hidden smDown>
             <Box display="flex" flexDirection="column" justifyContent="space-between">
               <Box>
-                {rating}
+                {ratingComponent}
                 <Typography variant="subtitle1" align="right">
-                  {Math.round(Math.random() * 60)} {texts.productsShowcaseGridreview}
+                  {reviews} {texts.productsShowcaseGridreview}
                 </Typography>
               </Box>
               <Button variant="outlined" color="secondary">
@@ -70,4 +81,4 @@ const ProductShowcaseGrid: React.FC = () => {
   );
 };
 
-export default ProductShowcaseGrid;
+export default ProductListItem;

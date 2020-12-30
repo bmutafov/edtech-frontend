@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-import SearchProducts from '../components/SearchProducts';
+import ProductBrowser from '../components/ProductBrowser';
 import NavBar from '../components/NavBar';
 
 const SearchProductsPage: React.FC = () => {
@@ -9,7 +9,7 @@ const SearchProductsPage: React.FC = () => {
     <>
       <NavBar />
       <Container maxWidth="lg" disableGutters>
-        <SearchProducts />
+        <ProductBrowser />
       </Container>
     </>
   );
