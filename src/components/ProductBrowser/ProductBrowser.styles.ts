@@ -29,5 +29,24 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       gap: theme.spacing(2),
     },
+    emptyState: {
+      display: 'block',
+      alignSelf: 'center',
+    },
+    loaderWrapper: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(255, 255, 255, 0.4)',
+      zIndex: 10,
+      display: 'flex',
+      alignItems: 'center',
+    },
+    loader: {
+      display: 'block',
+      margin: `${theme.spacing(3)}px auto`,
+    },
   })
 );

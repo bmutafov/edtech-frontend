@@ -92,8 +92,8 @@ const defaultTexts = {
 
   //SideBar
   sidebarFiltersText: 'Filters',
-  sideBarTitle: 'Category',
-  sideBarSubtitle: 'Price',
+  sideBarCategoryFilterTitle: 'Category',
+  sidebarRatingFilterTitle: 'Rating',
   sideBarResetButton: 'Reset all',
   sideBarApplyButton: 'Apply',
 
