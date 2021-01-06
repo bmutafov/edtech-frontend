@@ -49,6 +49,24 @@ const defaultTexts = {
   registerErrorPasswordMatch: "Passwords don't match",
   registerErrorEmailNotValid: 'Please enter valid email address',
 
+  //RegisterFormCompany.tsx
+  registerCompanyEmailLabel: 'Email*',
+  registerCompanyEmailPlaceholder: 'fontys@fontys.nl',
+  registerCompanyUsernameLabel: 'Username*',
+  registerCompanyUsernamePlaceholder: 'fontysEdtech',
+  registerCompanyPasswordLabel: 'Password*',
+  registerCompanyPasswordPlaceholder: 'Password',
+  registerCompanyConfirmPasswordPlaceholder: 'Password',
+  registerCompanyConfirmPasswordLabel: 'Confirm Password*',
+  registerCompanyNameLabel: 'Name*',
+  registerCompanyNamePlaceholder: 'Fontys University',
+  registerCompanyNumberLabel: 'Mobile number (optional)',
+  registerCompanyNumberPlaceholder: '+31 00 00 001',
+  registerCompanyLocationLabel: 'Country*',
+  registerCompanyLocationPlaceholder: 'Netherlands',
+  registerCompanyWebsiteLabel: 'Website-url*',
+  registerCompanyWebsitePlaceholder: 'fontys.nl',
+
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',
   navBarUserActionsSignUp: 'Sign up',
