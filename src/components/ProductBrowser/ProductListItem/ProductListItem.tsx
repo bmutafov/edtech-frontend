@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react';
-import { Paper, Typography, ButtonBase, Box, Button, Link, Hidden } from '@material-ui/core';
+import { Paper, Typography, ButtonBase, Box, Button, Link, Hidden, Chip } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import { useStyles } from './ProductListItem.styles';
 import useTexts from '../../../hooks/useTexts';
 import { Fade } from 'react-awesome-reveal';
 import useResponsive from '../../../hooks/useResponsive';
 import { theme } from '../../../utils/theme';
+import { ICategory } from '../../../schemas';
+import { Label } from '@material-ui/icons';
 
 interface Props {
   title?: string;
@@ -13,6 +15,7 @@ interface Props {
   description?: string;
   rating?: number;
   reviews?: number;
+  categories?: ICategory[];
 }
 
 const getShortDescription = (description = ''): string => {
@@ -21,7 +24,7 @@ const getShortDescription = (description = ''): string => {
   else return description.substring(0, MAX_SIZE) + '...';
 };
 
-const ProductListItem: React.FC<Props> = ({ title, byUser, description, rating, reviews }) => {
+const ProductListItem: React.FC<Props> = ({ title, byUser, description, rating, reviews, categories }) => {
   const classes = useStyles();
   const texts = useTexts();
   const { isTabletOrMobile } = useResponsive();
@@ -42,22 +45,42 @@ const ProductListItem: React.FC<Props> = ({ title, byUser, description, rating, 
               height={imageSize}
             />
           </ButtonBase>
-          <Box marginBottom={theme.spacing.$1} flex={5} display="flex" flexDirection="column">
-            <Link href="#" variant="h6" color="inherit" display="block">
-              {title}
-            </Link>
-            <Typography variant="caption" color="textSecondary" gutterBottom>
-              {texts.productShowcaseByCompanyPrefix}{' '}
-              <Link href="#" color="inherit">
-                {byUser}
+          <Box
+            marginBottom={theme.spacing.$1}
+            flex={5}
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+          >
+            <Box>
+              <Link href="#" variant="h6" color="inherit" display="block">
+                {title}
               </Link>
-            </Typography>
-            <Hidden mdUp>{ratingComponent}</Hidden>
-            <Hidden smDown>
-              <Typography variant="body2" gutterBottom>
-                {getShortDescription(description)}
+              <Typography variant="caption" color="textSecondary" gutterBottom>
+                {texts.productShowcaseByCompanyPrefix}{' '}
+                <Link href="#" color="inherit">
+                  {byUser}
+                </Link>
               </Typography>
-            </Hidden>
+              <Hidden mdUp>{ratingComponent}</Hidden>
+              <Hidden smDown>
+                <Typography variant="body2" gutterBottom>
+                  {getShortDescription(description)}
+                </Typography>
+              </Hidden>
+            </Box>
+            <Box className={classes.categoryChip}>
+              {categories &&
+                categories.map((category) => (
+                  <Chip
+                    icon={<Label></Label>}
+                    key={category.id}
+                    // variant="outlined"
+                    size="small"
+                    label={category.name}
+                  />
+                ))}
+            </Box>
           </Box>
 
           <Hidden mdUp>{getShortDescription(description)}</Hidden>

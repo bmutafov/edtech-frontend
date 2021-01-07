@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     },
     img: {
-      margin: 'auto',
+      eft: 'auto',
       display: 'block',
       maxWidth: '100%',
       maxHeight: '100%',
@@ -21,6 +21,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       gap: theme.spacing(2),
       width: '100%',
       height: '100%',
+      flexWrap: 'wrap',
+    },
+    categoryChip: {
+      display: 'flex',
+      gap: theme.spacing(1),
       flexWrap: 'wrap',
     },
   })
