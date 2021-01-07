@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     },
     img: {
-      eft: 'auto',
+      margin: 'auto',
       display: 'block',
       maxWidth: '100%',
       maxHeight: '100%',
