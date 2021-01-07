@@ -23,5 +23,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       height: '100%',
       flexWrap: 'wrap',
     },
+    categoryChip: {
+      display: 'flex',
+      gap: theme.spacing(1),
+      flexWrap: 'wrap',
+    },
   })
 );
