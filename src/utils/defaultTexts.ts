@@ -104,6 +104,12 @@ const defaultTexts = {
   navBarLinksHome: 'Home',
   navBarLinksForCompanies: 'For companies',
   navBarLinksProducts: 'Products',
+
+  //AboutPage.tsx
+  aboutPageTitle: 'We Are ' + '\n' + 'Edtech',
+  aboutPageSubtitle: 'Join the leading review platform of Educational Technologies',
+  aboutPageBodyText:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo',
 };
 
 export default defaultTexts;
