@@ -28,18 +28,14 @@ interface Props {
 }
 
 const RegisterFormCompany: React.FC<Props> = ({ onSuccess }) => {
-  const countrylist = countryList.map((country) => (
-    <MenuItem key={country} value={country}>
-      {country}
-    </MenuItem>
-  ));
+  const countrylist = countryList;
   const texts = useTexts();
   const { register: userRegister } = useAuthActions();
   const { call: httpRegister, loading } = userRegister;
   const { isTabletOrMobile } = useResponsive();
 
   const [error, setError] = useState<boolean | string>(false);
-  const [registerSuccess, setLoginSuccess] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
   const [selectedRole, setSelectedLocation] = useState<string>('Netherlands');
 
   const { register, handleSubmit, setValue, errors, watch } = useForm<Inputs>();
@@ -51,7 +47,7 @@ const RegisterFormCompany: React.FC<Props> = ({ onSuccess }) => {
     const result = await httpRegister({ email, username, password });
 
     if (result.success) {
-      setLoginSuccess(true);
+      setRegisterSuccess(true);
 
       setTimeout(() => {
         if (onSuccess) onSuccess();
@@ -253,7 +249,11 @@ const RegisterFormCompany: React.FC<Props> = ({ onSuccess }) => {
               ),
             }}
           >
-            {countrylist}
+            {countrylist.map((country) => (
+              <MenuItem key={country} value={country}>
+                {country}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             variant="outlined"
