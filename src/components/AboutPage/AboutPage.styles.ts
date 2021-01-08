@@ -28,18 +28,19 @@ export const useStyles = makeStyles({
     fontSize: '23px',
   },
   cardstyle: {
-    width: 700,
+    width: '40%',
     height: 400,
-    marginLeft: '300px',
+    marginLeft: '30%',
+    marginRight: '30%',
   },
   subtitlewidth: {
-    width: 600,
+    width: '50%',
   },
   root: {
     maxWidth: 345,
   },
   image: {
-    width: 400,
+    width: '300px',
     height: 250,
     background: '#cccccc',
   },
