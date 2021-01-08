@@ -28,7 +28,13 @@ const AboutPageBody: React.FC = () => {
           </Grid>
 
           <Grid item xs={6}>
-            <div className={classes.image}></div>
+            <Card>
+              <CardContent>
+                <Typography variant="subtitle2" className={classes.subtitle}>
+                  {texts.aboutPageBodyText}
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </div>
