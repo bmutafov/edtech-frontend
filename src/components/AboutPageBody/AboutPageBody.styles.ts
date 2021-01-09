@@ -18,6 +18,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     root: {
       flexGrow: 1,
+      marginLeft: '10%',
+      marginRight: '10%',
+      marginBottom: '10%',
     },
     image: {
       padding: theme.spacing(3),

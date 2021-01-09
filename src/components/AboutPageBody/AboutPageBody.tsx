@@ -23,11 +23,10 @@ const AboutPageBody: React.FC = () => {
       </Box>
       <div className={classes.root}>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <div className={classes.image}></div>
           </Grid>
-
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <Card>
               <CardContent>
                 <Typography variant="subtitle2" className={classes.subtitle}>
