@@ -3,9 +3,9 @@ const defaultTexts = {
   navBarTitle: 'EdTech',
 
   // Hero.tsx
-  heroTitle: 'Find the right products  for your academics needs',
-  heroButton: 'Explore products',
-  heroSubtitle: 'Browse products by category',
+  heroTitleHomePage: 'Find the right products  for your academics needs',
+  heroButtonHomePage: 'Explore products',
+  heroSubtitleHomePage: 'Browse products by category',
 
   // TrendingProducts.tsx
   trendingProductsTitle: 'Trending products',

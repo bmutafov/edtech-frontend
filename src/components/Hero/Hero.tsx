@@ -18,17 +18,17 @@ const Hero: React.FC = () => {
           <Box>
             <Box paddingTop={theme.spacing.$8}>
               <Typography variant="h1" className={classes.title}>
-                {texts.heroTitle}
+                {texts.heroTitleHomePage}
               </Typography>
             </Box>
             <Box marginTop={theme.spacing.$6}>
               <Button variant="contained" color="primary" className={classes.ctaButton} disableElevation>
-                {texts.heroButton}
+                {texts.heroButtonHomePage}
               </Button>
             </Box>
             <Box marginTop={theme.spacing.$6}>
               <Typography variant="subtitle2" className={classes.subtitle}>
-                {texts.heroSubtitle}
+                {texts.heroSubtitleHomePage}
               </Typography>
             </Box>
             <Box marginTop={theme.spacing.$2}>
