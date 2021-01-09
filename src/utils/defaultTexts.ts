@@ -60,6 +60,7 @@ const defaultTexts = {
   navBarUserActionsLoginModalSidebarDescription: 'Glad to see you back',
   navBarUserActionsRegisterModalSidebarDescription: 'Excited to see new members joining in',
   navBarUserActionsConfirmLogoutTitle: 'Are you sure you want to logout?',
+  navBarUserActionsLoggedInAsText: 'Logged in as:',
 
   //HeroFc.tsx
   herofcTitle: 'Grow yout business better with EdTech',
@@ -70,7 +71,7 @@ const defaultTexts = {
   optionListTitle: 'Company Options',
 
   //AddProducts.tsx
-  addProductFormTitle: 'Add Products',
+  addProductFormTitle: 'Add your product',
   addProductProductLabel: 'Product Name',
   addProductCategory: 'Category',
   addProductGroup: 'Group',
@@ -80,9 +81,12 @@ const defaultTexts = {
   addProductWebsite: 'Website',
   addProductDevelopment: 'Development Stage',
   addProductsSupportedPlatform: 'Supported Platforms',
-  addProductsSelectPlaceholder: 'Select Category',
+  addProductsCategoryPlaceholder: 'Select Category',
   addProductsWebsitePlaceholder: 'Link to Website',
   addProductsLabelPlaceholder: 'What is the official name of your product',
+  addProductDescriptionPlaceholder: 'Describe what this product is about in more detail',
+  addProductSubmitButtonText: 'Submit',
+  addProductSuccessAlert: 'The product was added successfully to EdTechFinder!',
 
   //ProductShowcaseGrid
   productShowcaseGridTitle: 'Product',
