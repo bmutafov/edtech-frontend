@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useState } from 'react';
+import getBaseUri from '../utils/getBaseUri';
 import useAuthState from '../Auth/useAuthState';
-import config from '../config/config';
 import isDev from '../utils/isDev';
 
 export type PostRequestAction<T> = [
@@ -29,7 +29,7 @@ const usePostRequest = <DataType>(endpoint: string, validateStatus?: boolean): P
    */
   const postData = async (data: DataType) => {
     setIsLoading(true);
-    const url = config.baseURI + endpoint;
+    const url = getBaseUri() + endpoint;
 
     try {
       const options: AxiosRequestConfig | undefined = validateStatus
