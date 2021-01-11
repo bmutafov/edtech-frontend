@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Button, Container, Grid, Hidden, Typography } from '@material-ui/core';
 import useTexts from '../../hooks/useTexts';
 import { useStyles } from './Hero.styles';
-import { arrayIndexingWithLength } from '../../utils/arrayIndexingWithLength';
 import { theme } from '../../utils/theme';
 import HeaderImage from './HeaderImage/HeaderImage';
 import CategoryPaper from './CategoryPaper';
@@ -14,7 +13,7 @@ const Hero: React.FC = () => {
   const classes = useStyles();
   const texts = useTexts();
   const history = useHistory();
-  const { data, loading } = useGetRequest<ICategory[]>('/categories', { limit: 4 });
+  const { data } = useGetRequest<ICategory[]>('/categories', { limit: 4 });
 
   return (
     <Box className={classes.heroBackground} paddingY={theme.spacing.$6}>

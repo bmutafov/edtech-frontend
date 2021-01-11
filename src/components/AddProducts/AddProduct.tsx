@@ -20,7 +20,7 @@ import { useForm } from 'react-hook-form';
 import usePostRequest from '../../hooks/usePostRequest';
 import useAuthState from '../../Auth/useAuthState';
 import { Alert } from '@material-ui/lab';
-import { Check, Close, Delete } from '@material-ui/icons';
+import { Check, Close } from '@material-ui/icons';
 import { green } from '@material-ui/core/colors';
 
 const TextFieldWrapper: React.FC = ({ children }) => (
@@ -42,18 +42,13 @@ interface Inputs {
   website: string;
 }
 
-interface RequestData extends Inputs {
-  user: string;
-  categories: string[];
-}
-
 const AddProduct: React.FC = () => {
   const { userInfo } = useAuthState();
   const classes = useStyles();
   const texts = useTexts();
 
   const { data: categoriesData } = useGetRequest<ICategory[]>('/categories');
-  const [submitData, { loading }] = usePostRequest<any>('/products');
+  const [submitData, { loading }] = usePostRequest<FormData>('/products');
 
   const [selectedFile, setSelectedFile] = useState<File>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
