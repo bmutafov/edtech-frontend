@@ -1,6 +1,21 @@
-import { Avatar, Box, Button, Dialog, DialogActions, DialogTitle, IconButton } from '@material-ui/core';
+import {
+  Avatar,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  Popover,
+} from '@material-ui/core';
 import { EmojiPeople, ExitToApp, PersonAdd } from '@material-ui/icons';
+import PopupState, { bindPopover, bindTrigger } from 'material-ui-popup-state';
 import React, { useCallback, useMemo, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import useAuthActions from '../../../Auth/useAuthActions';
 import useAuthState from '../../../Auth/useAuthState';
 import useSnackbar from '../../../hooks/useSnackbar';
@@ -12,6 +27,7 @@ import ModalForm from './ModalForm/ModalForm';
 
 const NavBarUserActions: React.FC = () => {
   const texts = useTexts();
+  const history = useHistory();
   const [snackBarComponent, openSnackbar] = useSnackbar({ severity: 'success' });
   const { loggedIn, userInfo } = useAuthState();
   const { logout } = useAuthActions();
@@ -30,6 +46,13 @@ const NavBarUserActions: React.FC = () => {
     setIsLogoutDialogOpen(false);
     openSnackbar(texts.navBarUserActionsLogoutSnackbarText);
   }, [logout, openSnackbar, texts.navBarUserActionsLogoutSnackbarText]);
+
+  const handleRedirect = useCallback(
+    (path: string) => {
+      history.push(path);
+    },
+    [history]
+  );
 
   const confirmLogoutDialog = useMemo(() => {
     return (
@@ -50,7 +73,35 @@ const NavBarUserActions: React.FC = () => {
   const loggedInContent = useMemo(
     () => (
       <Box display="flex" alignItems="center">
-        <Avatar>{userInfo?.username.charAt(0).toUpperCase()}</Avatar>
+        <PopupState variant="popover" popupId="demo-popup-popover">
+          {(popupState) => (
+            <>
+              <Avatar style={{ cursor: 'pointer' }} {...bindTrigger(popupState)}>
+                {userInfo?.username.charAt(0).toUpperCase()}
+              </Avatar>
+              <Popover
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+              >
+                <List style={{ width: 300 }} component="nav" aria-label="secondary mailbox folders">
+                  <ListSubheader component="div" id="nested-list-subheader">
+                    <b>{texts.navBarUserActionsLoggedInAsText}</b> {userInfo?.username}
+                  </ListSubheader>
+                  <ListItem button>
+                    <ListItemText primary="Add product" onClick={() => handleRedirect('/products/new')} />
+                  </ListItem>
+                </List>
+              </Popover>
+            </>
+          )}
+        </PopupState>
         <Box marginLeft={theme.spacing.$1}>
           <IconButton color="secondary" onClick={() => setIsLogoutDialogOpen(true)}>
             <ExitToApp />
@@ -58,7 +109,7 @@ const NavBarUserActions: React.FC = () => {
         </Box>
       </Box>
     ),
-    [userInfo?.username]
+    [handleRedirect, texts.navBarUserActionsLoggedInAsText, userInfo?.username]
   );
 
   const loggedOutContent = useMemo(

@@ -1,192 +1,242 @@
-import React from 'react';
-import { TextField, FormLabel, Typography, Select, Grid, Input, Box, Paper, Button } from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+  TextField,
+  Grid,
+  Box,
+  Button,
+  FormControl,
+  CircularProgress,
+  FormControlLabel,
+  Checkbox,
+} from '@material-ui/core';
 import { useStyles } from './AddProduct.styles';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import useTexts from '../../hooks/useTexts';
+import useGetRequest from '../../hooks/useGetRequest';
+import { ICategory } from '../../schemas';
+import { theme } from '../../utils/theme';
+import Section from '../Section';
+import { useForm } from 'react-hook-form';
+import usePostRequest from '../../hooks/usePostRequest';
+import useAuthState from '../../Auth/useAuthState';
+import { Alert } from '@material-ui/lab';
+
+const TextFieldWrapper: React.FC = ({ children }) => (
+  <Grid item md={10} sm={12} xs={12}>
+    {children}
+  </Grid>
+);
+
+type LabelProps = { text: string; className: string };
+const Label: React.FC<LabelProps> = ({ text, className }) => (
+  <Grid item md={2} sm={12} xs={12} className={className}>
+    {text}
+  </Grid>
+);
+
+interface Inputs {
+  name: string;
+  description: string;
+  website: string;
+}
+
+interface RequestData extends Inputs {
+  user: string;
+  categories: string[];
+}
 
 const AddProduct: React.FC = () => {
+  const { userInfo } = useAuthState();
   const classes = useStyles();
   const texts = useTexts();
-  const [categoryName, setCategoryName] = React.useState<string[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setCategoryName(event.target.value as string[]);
+  const { data: categoriesData } = useGetRequest<ICategory[]>('/categories');
+  const [submitData, { loading }] = usePostRequest<RequestData>('/products');
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [isSuccessful, setIsSuccessful] = useState(false);
+
+  const { register, handleSubmit, errors } = useForm<Inputs>();
+
+  const handleCategoryChange = (category: string): void => {
+    const isSelected = selectedCategories.find((c) => c === category);
+
+    if (isSelected) {
+      setSelectedCategories(selectedCategories.filter((c) => c !== category));
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
   };
+
+  const isCategorySelected = (category: string): boolean => {
+    return !!selectedCategories.find((c) => c === category);
+  };
+
+  const hadnleFormSubmit = async (inputs: Inputs) => {
+    const result = await submitData({ ...inputs, categories: selectedCategories, user: userInfo?.id || '' });
+
+    if (result?.status === 200) {
+      setIsSuccessful(true);
+    }
+  };
+
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <FormLabel component="legend">
-          <Typography variant="h4" gutterBottom>
-            {texts.addProductFormTitle}
-          </Typography>
-        </FormLabel>
-        <div>
+    <form onSubmit={handleSubmit(hadnleFormSubmit)}>
+      <Box bgcolor="white" padding={theme.spacing.$3} paddingTop={theme.spacing.$3}>
+        <Section title={texts.addProductFormTitle}>
+          {isSuccessful && (
+            <Box marginBottom={theme.spacing.$2}>
+              <Alert severity="success">{texts.addProductSuccessAlert}</Alert>
+            </Box>
+          )}
           <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductProductLabel}</label>
-            </Grid>
-            <Grid item xs={6}>
+            <Label text={texts.addProductProductLabel} className={classes.labelWrapper} />
+            <TextFieldWrapper>
               <TextField
+                name="name"
+                inputRef={register({
+                  required: texts.registerErrorFieldRequired,
+                })}
+                fullWidth
+                variant="outlined"
                 className={classes.textField}
-                required
-                id="standard-full-width"
                 placeholder={texts.addProductsLabelPlaceholder}
+                helperText={errors.name && errors.name.message}
+                disabled={loading}
+                error={!!errors.name}
               />
-            </Grid>
+            </TextFieldWrapper>
           </Grid>
-        </div>
-        <div>
           <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductCategory}</label>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.textField}
-                labelId="demo-mutiple-name-label"
-                id="productCategory"
-                multiple
-                value={categoryName}
-                onChange={handleChange}
-                input={<Input />}
-                placeholder={texts.addProductsSelectPlaceholder}
-              />
-            </Grid>
+            <Label text={texts.addProductCategory} className={classes.labelWrapper} />
+            <TextFieldWrapper>
+              <FormControl component="fieldset" className={classes.textField}>
+                {loading && <CircularProgress />}
+                {categoriesData?.map((category) => (
+                  <FormControlLabel
+                    value={isCategorySelected(category.id || '')}
+                    control={
+                      <Checkbox
+                        checked={isCategorySelected(category.id || '')}
+                        onChange={() => handleCategoryChange(category.id || '')}
+                        name={category.id}
+                      />
+                    }
+                    label={category.name}
+                    key={category.id}
+                  />
+                ))}
+              </FormControl>
+            </TextFieldWrapper>
           </Grid>
-        </div>
-        <div>
+          {/* <Grid container spacing={3}>
+        <Label text={texts.addProductGroup} className={classes.labelWrapper} />
+        <TextFieldWrapper>
+          <TextField
+            select
+            fullWidth
+            variant="outlined"
+            className={classes.textField}
+            id="productGroup"
+            onChange={handleChange}
+            placeholder={texts.addProductsCategoryPlaceholder}
+          />
+        </TextFieldWrapper>
+      </Grid> */}
           <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductGroup}</label>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.textField}
-                labelId="demo-mutiple-name-label"
-                id="productGroup"
-                multiple
-                value={categoryName}
-                onChange={handleChange}
-                input={<Input />}
-                placeholder={texts.addProductsSelectPlaceholder}
-              />
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductDescription}</label>
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <Grid item xs={8}>
+            <Label text={texts.addProductDescription} className={classes.labelWrapper} />
+            <TextFieldWrapper>
               <TextField
+                name="description"
+                inputRef={register({
+                  required: texts.registerErrorFieldRequired,
+                })}
+                variant="outlined"
+                fullWidth
                 className={classes.textBox}
                 id="description"
                 multiline
                 rows={4}
-                defaultValue="Lorem Ipsum"
-                variant="outlined"
+                placeholder={texts.addProductDescriptionPlaceholder}
               />
-            </Grid>
+            </TextFieldWrapper>
           </Grid>
-        </div>
-        <div>
+          {/* <Grid container spacing={3}>
+        <Label text={texts.addProductButton} className={classes.labelWrapper} />
+        <TextFieldWrapper>
+          <Button variant="contained" disableElevation>
+            {texts.addProductButton} <CloudUploadIcon />
+          </Button>
+        </TextFieldWrapper>
+      </Grid> */}
           <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductProductLabel}</label>
-            </Grid>
-            <Grid item xs={6}>
-              <Button variant="contained">
-                {texts.addProductButton} <CloudUploadIcon />
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductWebsite}</label>
-            </Grid>
-            <Grid item xs={6}>
+            <Label text={texts.addProductWebsite} className={classes.labelWrapper} />
+            <TextFieldWrapper>
               <TextField
+                name="website"
+                fullWidth
+                inputRef={register({
+                  required: texts.registerErrorFieldRequired,
+                })}
+                variant="outlined"
                 className={classes.textField}
-                required
-                id="productsWebsite"
+                id="website"
                 placeholder={texts.addProductsWebsitePlaceholder}
+                helperText={errors.website && errors.website.message}
+                disabled={loading}
+                error={!!errors.website}
               />
-            </Grid>
+            </TextFieldWrapper>
           </Grid>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductDevelopment}</label>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.textField}
-                labelId="demo-mutiple-name-label"
-                id="productDevelopment"
-                multiple
-                value={categoryName}
-                onChange={handleChange}
-                input={<Input />}
-                placeholder={texts.addProductsSelectPlaceholder}
-              />
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductPrice}</label>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.textField}
-                labelId="demo-mutiple-name-label"
-                id="addPrice"
-                multiple
-                value={categoryName}
-                onChange={handleChange}
-                input={<Input />}
-                placeholder={texts.addProductsSelectPlaceholder}
-              />
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Grid container spacing={3}>
-            <Grid item xs={3}>
-              <label>{texts.addProductsSupportedPlatform}</label>
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                className={classes.textField}
-                labelId="demo-mutiple-name-label"
-                id="addSupportedPlatform"
-                multiple
-                value={categoryName}
-                onChange={handleChange}
-                input={<Input />}
-                placeholder={texts.addProductsSelectPlaceholder}
-              />
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Box display="flex" justifyContent="flex-end" m={1} p={1}>
-            <Button variant="outlined" color="primary">
-              {texts.addProductFormTitle}
-            </Button>
-          </Box>
-        </div>
-      </Paper>
-    </div>
+          {/* <Grid container spacing={3}>
+        <Label text={texts.addProductDevelopment} className={classes.labelWrapper} />
+        <TextFieldWrapper>
+          <TextField
+            select
+            fullWidth
+            variant="outlined"
+            className={classes.textField}
+            id="productDevelopment"
+            onChange={handleChange}
+            placeholder={texts.addProductsCategoryPlaceholder}
+          />
+        </TextFieldWrapper>
+      </Grid>
+      <Grid container spacing={3}>
+        <Label text={texts.addProductPrice} className={classes.labelWrapper} />
+        <TextFieldWrapper>
+          <TextField
+            select
+            fullWidth
+            variant="outlined"
+            className={classes.textField}
+            id="addPrice"
+            onChange={handleChange}
+            placeholder={texts.addProductsCategoryPlaceholder}
+          />
+        </TextFieldWrapper>
+      </Grid>
+      <Grid container spacing={3}>
+        <Label text={texts.addProductsSupportedPlatform} className={classes.labelWrapper} />
+        <TextFieldWrapper>
+          <TextField
+            select
+            fullWidth
+            variant="outlined"
+            className={classes.textField}
+            id="addSupportedPlatform"
+            onChange={handleChange}
+            placeholder={texts.addProductsCategoryPlaceholder}
+          />
+        </TextFieldWrapper>
+      </Grid> */}
+        </Section>
+        <Box display="flex" justifyContent="flex-end" paddingY={theme.spacing.$1}>
+          <Button type="submit" variant="contained" color="primary" disableElevation>
+            {texts.addProductSubmitButtonText}
+          </Button>
+        </Box>
+      </Box>
+    </form>
   );
 };
 

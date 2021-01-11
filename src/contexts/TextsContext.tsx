@@ -2,6 +2,7 @@ import { Box, CircularProgress, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { createContext } from 'react';
+import config from '../config/config';
 import useGetRequest from '../hooks/useGetRequest';
 import defaultTexts from '../utils/defaultTexts';
 import { theme } from '../utils/theme';
@@ -27,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 export const TextsContextProvider: React.FC = ({ children }): JSX.Element => {
-  const { data, loading } = useGetRequest<TextsScheme>('/texts');
+  const { data, loading } = useGetRequest<TextsScheme>(config.cmsTextsEndpoint);
   const classes = useStyles();
 
   if (loading) {
