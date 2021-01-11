@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import config from '../config/config';
+import getBaseUri from '../utils/getBaseUri';
 import isDev from '../utils/isDev';
 
 interface GetRequestResult<T> {
@@ -42,7 +42,7 @@ const useGetRequest = <FetchedData>(endpoint: string, parameters?: Parameters): 
   const fetchData = useCallback(async (endpoint: string, parameters?: Parameters) => {
     setIsLoading(true);
     try {
-      const url = config.baseURI + endpoint + getParameters(parameters);
+      const url = getBaseUri() + endpoint + getParameters(parameters);
       const response = await axios.get<FetchedData>(url);
       setResponseData(response.data);
     } catch (e) {
