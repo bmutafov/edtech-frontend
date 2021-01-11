@@ -6,6 +6,7 @@ import { Inputs } from './FormBuilder.types';
 const inputs: Inputs[] = [
   {
     id: 'username',
+    type: 'text',
     label: 'Username',
     placeholder: 'Enter your username',
     options: {
@@ -14,14 +15,17 @@ const inputs: Inputs[] = [
   },
   {
     id: 'password',
+    type: 'password',
     label: 'Password',
     placeholder: 'Enter your password',
+    icon: <Email />,
     options: {
       required: 'This is required field',
     },
   },
   {
     id: 'confirmPassword',
+    type: 'password',
     label: 'Confirm password',
     icon: <Email />,
     placeholder: 'Enter your password again',
@@ -42,7 +46,7 @@ const TestLoginForm: React.FC = () => {
     console.log(data);
   };
 
-  return <FormBuilder inputs={inputs} onSubmit={handleSubmit} />;
+  return <FormBuilder inputs={inputs} onSubmit={handleSubmit} isCompact={true} />;
 };
 
 export default TestLoginForm;

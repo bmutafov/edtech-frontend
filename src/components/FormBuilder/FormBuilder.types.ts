@@ -8,17 +8,19 @@ export type InputFormFields = {
   [key in string]: string;
 };
 
+export type InputType = 'text' | 'password' | 'select';
+
 export interface TextInputs {
-  label: string;
   id: string;
+  type: InputType;
+  label?: string;
   placeholder?: string;
   options?: RegisterOptions;
   icon?: JSX.Element;
-  isSelect?: boolean;
 }
 
 export interface SelectInputs extends TextInputs {
-  isSelect: true;
+  type: 'select';
   menuItems: MenuItem[];
 }
 

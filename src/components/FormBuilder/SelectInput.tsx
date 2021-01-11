@@ -4,7 +4,7 @@ import { MenuItem as MenuItemType } from './FormBuilder.types';
 
 interface SelectInputProps {
   id: string;
-  label: string;
+  label?: string;
   menuItems?: MenuItemType[];
   onChange: (id: string, value: string) => void;
   value: string;
