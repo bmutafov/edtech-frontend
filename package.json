@@ -38,7 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "cross-env PUBLIC_URL=/ npm start",
-    "build": "cross-env NODE_ENV=production react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint-ci": "eslint --ext .js \"src/**/*.{ts,tsx}\"",
