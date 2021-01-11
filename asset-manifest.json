@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/edtech-frontend/static/css/main.91a8a90e.chunk.css",
-    "main.js": "/edtech-frontend/static/js/main.e329c996.chunk.js",
-    "main.js.map": "/edtech-frontend/static/js/main.e329c996.chunk.js.map",
+    "main.js": "/edtech-frontend/static/js/main.ecc20d77.chunk.js",
+    "main.js.map": "/edtech-frontend/static/js/main.ecc20d77.chunk.js.map",
     "runtime-main.js": "/edtech-frontend/static/js/runtime-main.83610a6c.js",
     "runtime-main.js.map": "/edtech-frontend/static/js/runtime-main.83610a6c.js.map",
     "static/js/2.3f20d7b1.chunk.js": "/edtech-frontend/static/js/2.3f20d7b1.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.83610a6c.js",
     "static/js/2.3f20d7b1.chunk.js",
     "static/css/main.91a8a90e.chunk.css",
-    "static/js/main.e329c996.chunk.js"
+    "static/js/main.ecc20d77.chunk.js"
   ]
 }
