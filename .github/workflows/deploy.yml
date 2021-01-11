@@ -21,8 +21,6 @@ jobs:
         run: |
           yarn install
           yarn build
-        env: 
-          NODE_ENV: production
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
