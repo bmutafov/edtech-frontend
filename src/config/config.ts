@@ -1,6 +1,6 @@
 const config = {
   baseURI: {
-    dev: 'http://localhost:1337', // The main URI to the API to which the app makes requests to (exlude trailing /)
+    dev: 'http://edtechfinder.nl', // The main URI to the API to which the app makes requests to (exlude trailing /)
     production: 'http://edtechfinder.nl',
   },
   localStorageAuthTokenKey: 'auth-token', // The key for the localstorage entry for the JWT token
