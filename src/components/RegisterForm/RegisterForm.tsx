@@ -10,6 +10,7 @@ import config from '../../config/config';
 import useResponsive from '../../hooks/useResponsive';
 
 const EMAIL_VALIDATION_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PHONE_VALIDATION_REGEX = /^([0-9]| |\+)*$/;
 
 enum EducationalRole {
   TEACHER = 'teacher',
@@ -44,12 +45,18 @@ const RegisterForm: React.FC<Props> = ({ onSuccess }) => {
   const { register, handleSubmit, setValue, errors, watch } = useForm<Inputs>();
 
   const hadnleFormSubmit = async (inputs: Inputs) => {
-    const { email, username, password } = inputs;
+    const { email, username, password, name, number, institute } = inputs;
     setError(false);
 
-    // ! Role is not present in inputs
-    // TODO: FIX
-    const result = await httpRegister({ email, username, password });
+    const result = await httpRegister({
+      email,
+      username,
+      password,
+      name,
+      number,
+      institute,
+      educationalRole: selectedRole,
+    });
 
     if (result.success) {
       setLoginSuccess(true);
@@ -218,7 +225,16 @@ const RegisterForm: React.FC<Props> = ({ onSuccess }) => {
             variant="outlined"
             id="number"
             name="number"
-            inputRef={register()}
+            inputRef={register({
+              pattern: {
+                value: PHONE_VALIDATION_REGEX,
+                message: texts.registerErrorPhonePattern,
+              },
+              maxLength: {
+                value: 15,
+                message: texts.registerErrorPhoneLength,
+              },
+            })}
             label={texts.registerNumberLabel}
             placeholder={texts.registerNumberPlaceholder}
             helperText={errors.number && errors.number.message}
