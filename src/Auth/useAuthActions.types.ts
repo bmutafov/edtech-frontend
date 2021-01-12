@@ -7,6 +7,10 @@ export interface RegisterInfo {
   username: string;
   email: string;
   password: string;
+  name: string;
+  number: string;
+  institute: string;
+  educationalRole: string;
 }
 
 interface SuccessResponseData {

@@ -48,6 +48,8 @@ const defaultTexts = {
   registerErrorMinLength: 'Your password must contain at least 6 characters.',
   registerErrorPasswordMatch: "Passwords don't match",
   registerErrorEmailNotValid: 'Please enter valid email address',
+  registerErrorPhoneLength: 'Phone number can be maximum 15 characters long',
+  registerErrorPhonePattern: "Phone number can include only numbers, spaces and '+' symbol",
 
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',
