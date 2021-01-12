@@ -6,6 +6,7 @@ import AddProductPage from '../pages/AddProductPage';
 import ForCompanyPage from '../pages/ForCompanyPage';
 import SearchProductsPage from '../pages/SearchProductsPage';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
+import RegisterCompany from '../components/RegisterFormCompany/RegisterFormCompany';
 
 const Router: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Router: React.FC = () => {
       <Route exact path="/products/new" component={AddProductPage} />
       <Route exact path="/login" component={LoginForm} />
       <Route exact path="/register" component={RegisterForm} />
+      <Route exact path="/registercompany" component={RegisterCompany} />
       <Route exact path="/company" component={ForCompanyPage} />
       <Route exact path="/products" component={SearchProductsPage} />
     </BrowserRouter>

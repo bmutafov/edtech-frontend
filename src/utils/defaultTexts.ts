@@ -51,6 +51,24 @@ const defaultTexts = {
   registerErrorPhoneLength: 'Phone number can be maximum 15 characters long',
   registerErrorPhonePattern: "Phone number can include only numbers, spaces and '+' symbol",
 
+  //RegisterFormCompany.tsx
+  registerCompanyEmailLabel: 'Email*',
+  registerCompanyEmailPlaceholder: 'fontys@fontys.nl',
+  registerCompanyUsernameLabel: 'Username*',
+  registerCompanyUsernamePlaceholder: 'fontysEdtech',
+  registerCompanyPasswordLabel: 'Password*',
+  registerCompanyPasswordPlaceholder: 'Password',
+  registerCompanyConfirmPasswordPlaceholder: 'Password',
+  registerCompanyConfirmPasswordLabel: 'Confirm Password*',
+  registerCompanyNameLabel: 'Name*',
+  registerCompanyNamePlaceholder: 'Fontys University',
+  registerCompanyNumberLabel: 'Mobile number (optional)',
+  registerCompanyNumberPlaceholder: '+31 00 00 001',
+  registerCompanyLocationLabel: 'Country*',
+  registerCompanyLocationPlaceholder: 'Netherlands',
+  registerCompanyWebsiteLabel: 'Website-url*',
+  registerCompanyWebsitePlaceholder: 'fontys.nl',
+
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',
   navBarUserActionsSignUp: 'Sign up',
