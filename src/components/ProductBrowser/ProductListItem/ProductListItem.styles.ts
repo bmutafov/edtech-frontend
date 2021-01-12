@@ -8,6 +8,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     paper: {
       background: '#fcfcfc',
       padding: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+    },
+    ratingText: {
+      fontSize: '1rem',
     },
     img: {
       margin: 'auto',

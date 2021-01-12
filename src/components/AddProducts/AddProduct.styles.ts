@@ -27,6 +27,16 @@ export const useStyles = makeStyles((theme: Theme) =>
         maxHeight: '1200px',
       },
     },
+    fileInfoBox: {
+      display: 'flex',
+      width: '100%',
+      alignItems: 'center',
+      gap: theme.spacing(1),
+      background: '#fcfcfc',
+      padding: theme.spacing(1),
+      marginLeft: theme.spacing(1),
+      justifyContent: 'space-between',
+    },
     textBox: {},
     paper: {
       margin: 'auto',
