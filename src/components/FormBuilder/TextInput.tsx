@@ -1,5 +1,6 @@
 import { InputAdornment, TextField } from '@material-ui/core';
 import React from 'react';
+import { FormBuilderOptions } from './FormBuilder';
 import { ErrorType, InputType } from './FormBuilder.types';
 
 export interface TextInputProps {
@@ -11,6 +12,7 @@ export interface TextInputProps {
   disabled?: boolean;
   icon?: JSX.Element;
   onChange: (id: string, value: string) => void;
+  options?: FormBuilderOptions;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -22,6 +24,7 @@ const TextInput: React.FC<TextInputProps> = ({
   icon,
   onChange,
   type = 'text',
+  options,
 }) => {
   const inputProps = icon
     ? {
@@ -44,7 +47,9 @@ const TextInput: React.FC<TextInputProps> = ({
       error={!!hasError}
       fullWidth
       InputProps={inputProps}
-      margin="normal"
+      style={{
+        marginBottom: options?.spacing || 0,
+      }}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(id, e.target.value)}
     />
   );

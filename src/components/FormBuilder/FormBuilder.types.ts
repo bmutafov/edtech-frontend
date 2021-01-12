@@ -15,6 +15,7 @@ export interface TextInputs {
   type: InputType;
   label?: string;
   placeholder?: string;
+  disabled?: boolean;
   options?: RegisterOptions;
   icon?: JSX.Element;
 }

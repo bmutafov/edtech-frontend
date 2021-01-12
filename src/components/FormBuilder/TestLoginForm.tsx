@@ -33,6 +33,23 @@ const inputs: Inputs[] = [
       required: 'This is required field',
     },
   },
+  {
+    id: 'role',
+    type: 'select',
+    label: 'Educational role',
+    placeholder: 'Select role',
+    icon: <Email />,
+    menuItems: [
+      {
+        label: 'Student',
+        value: 'student',
+      },
+      {
+        label: 'Teacher',
+        value: 'teacher',
+      },
+    ],
+  },
 ];
 
 interface InputIds {
@@ -46,7 +63,7 @@ const TestLoginForm: React.FC = () => {
     console.log(data);
   };
 
-  return <FormBuilder inputs={inputs} onSubmit={handleSubmit} isCompact={true} />;
+  return <FormBuilder inputs={inputs} onSubmit={handleSubmit} isCompact={true} options={{ spacing: '10px' }} />;
 };
 
 export default TestLoginForm;

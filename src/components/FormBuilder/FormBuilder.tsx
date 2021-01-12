@@ -1,15 +1,21 @@
 import { Box } from '@material-ui/core';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Inputs, SelectInputs, InputFormFields } from './FormBuilder.types';
 import SelectInput from './SelectInput';
 import TextInput from './TextInput';
 
+export interface FormBuilderOptions {
+  spacing?: string;
+}
+
 interface Props {
   isCompact?: boolean;
   inputs: Inputs[];
   submitButtonText?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit: (data: any) => void;
+  options?: FormBuilderOptions;
 }
 
 const objectWithoutProp = (obj: Inputs, prop: keyof Inputs): Inputs => {
@@ -22,12 +28,11 @@ const isSelect = (input: Inputs | SelectInputs): input is SelectInputs => {
   return input.type === 'select';
 };
 
-const FormBuilder: React.FC<Props> = ({ inputs, onSubmit, isCompact = true, submitButtonText = 'Submit' }) => {
+const FormBuilder: React.FC<Props> = ({ inputs, onSubmit, isCompact = true, submitButtonText = 'Submit', options }) => {
   const { register, handleSubmit, setValue, errors, watch } = useForm<InputFormFields>();
 
   const onFormSubmit = useCallback(
     (inputs: InputFormFields) => {
-      console.log(inputs);
       onSubmit(inputs);
     },
     [onSubmit]
@@ -47,47 +52,68 @@ const FormBuilder: React.FC<Props> = ({ inputs, onSubmit, isCompact = true, subm
     [setValue]
   );
 
-  const renderCompactView = useCallback(
-    (input: Inputs): JSX.Element =>
-      isSelect(input) ? (
-        <SelectInput
-          key={input.id}
-          id={input.id}
-          label={input.label}
-          onChange={handleChange}
-          menuItems={input.menuItems}
-          // icon={input.icon}
-          value={watch('category')}
-        />
-      ) : (
-        <TextInput
-          key={input.id}
-          type={input.type}
-          label={input.label}
-          id={input.id}
-          placeholder={input.placeholder}
-          error={errors}
-          icon={input.icon}
-          onChange={handleChange}
-        />
-      ),
-    [errors, handleChange, watch]
+  const renderInput = useCallback(
+    (input: Inputs): JSX.Element | undefined => {
+      let el: JSX.Element | undefined;
+
+      switch (input.type) {
+        case 'text':
+        case 'password':
+          el = (
+            <TextInput
+              key={input.id}
+              type={input.type}
+              label={input.label}
+              disabled={input.disabled}
+              id={input.id}
+              placeholder={input.placeholder}
+              error={errors}
+              icon={input.icon}
+              onChange={handleChange}
+              options={options}
+            />
+          );
+          break;
+
+        case 'select': {
+          el = isSelect(input) ? (
+            <SelectInput
+              key={input.id}
+              id={input.id}
+              label={input.label}
+              disabled={input.disabled}
+              onChange={handleChange}
+              menuItems={input.menuItems}
+              value={watch(input.id)}
+              options={options}
+              icon={input.icon}
+            />
+          ) : undefined;
+          break;
+        }
+        default:
+          throw Error(`Unexpected input type of field`);
+      }
+
+      return el;
+    },
+    [errors, handleChange, options, watch]
   );
 
   const renderWideView = useCallback(
     (input: Inputs): JSX.Element => (
       <Box display="flex" alignItems="center" justifyContent="center">
         <Box flex={1}>{input.label}</Box>
-        <Box flex={3}>{renderCompactView(objectWithoutProp(input, 'label'))}</Box>
+        <Box flex={3}>{renderInput(objectWithoutProp(input, 'label'))}</Box>
       </Box>
     ),
-    [renderCompactView]
+    [renderInput]
   );
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)}>
       {inputs.map((input) => {
-        return isCompact ? renderCompactView(input) : renderWideView(input);
+        return isCompact ? renderInput(input) : renderWideView(input);
       })}
       <button type="submit">{submitButtonText}</button>
     </form>
