@@ -1,12 +1,13 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Button, Typography, Box, Grid, CardActionArea } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Button, Typography, Box, Grid } from '@material-ui/core';
 import { useStyles } from './ProductInfoCard.styles';
-import { theme } from '../../utils/theme';
+import useTexts from '../../hooks/useTexts';
 import { Rating } from '@material-ui/lab';
 
 const ProductInfoCard: React.FC = () => {
+  const texts = useTexts();
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | null>(4);
+  const [value] = React.useState<number | null>(4);
   return (
     <Grid container>
       <Grid xs={12}>
@@ -15,7 +16,7 @@ const ProductInfoCard: React.FC = () => {
             <CardMedia className={classes.cover} image="emptyimage.jpg" title="Products" />
             <div className={classes.button}>
               <Button variant="contained" size="small" color="primary">
-                Learn More
+                {texts.productInfoCardButtonText}
               </Button>
             </div>
           </div>
@@ -23,26 +24,26 @@ const ProductInfoCard: React.FC = () => {
           <div className={classes.details}>
             <CardContent>
               <Typography component="h5" variant="h5">
-                Products
+                {texts.productInfoCardTitle}
               </Typography>
               <div>
                 <Rating name="read-only" value={value} readOnly />
-                <Box ml={2}>[3.0] Overall Rating</Box>
+                <Box ml={2}>{texts.productInfoCardRating}</Box>
               </div>
-              <Typography> Lorem Ipsum gfuyfgerkhfgiyger</Typography>
-              <Typography>Product Category</Typography>
+              <Typography>{texts.productInfoCardPriceSubtitle}</Typography>
+              <Typography>{texts.productInfoCardSubtitle2}</Typography>
               <Grid container spacing={3}>
                 <Grid item>
-                  <Typography variant="h6">Price</Typography>
-                  <Typography variant="subtitle1">Free</Typography>
+                  <Typography variant="h6">{texts.productInfoCardPrice}</Typography>
+                  <Typography variant="subtitle1">{texts.productInfoCardPriceSubtitle}</Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6">Grade</Typography>
-                  <Typography variant="subtitle1">Group1, Group2</Typography>
+                  <Typography variant="h6">{texts.productInfoCardGrade}</Typography>
+                  <Typography variant="subtitle1">{texts.productInfoCardGradeSubtitle}</Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6">Platform</Typography>
-                  <Typography variant="subtitle1">iOS, Android, Desktop</Typography>
+                  <Typography variant="h6">{texts.productInfoCardPlatform}</Typography>
+                  <Typography variant="subtitle1">{texts.productInfoCardPlatformSubtitle}</Typography>
                 </Grid>
               </Grid>
             </CardContent>
