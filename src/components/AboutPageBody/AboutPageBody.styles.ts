@@ -7,12 +7,21 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '23px',
     },
     cardstyle: {
+      [theme.breakpoints.down('sm')]: {
+        width: '90%',
+        height: 400,
+        marginLeft: '5%',
+        marginRight: '5%',
+      },
       width: '40%',
       height: 400,
       marginLeft: '30%',
       marginRight: '30%',
     },
     subtitlewidth: {
+      [theme.breakpoints.down('sm')]: {
+        width: '90%',
+      },
       width: '50%',
       padding: theme.spacing(3),
     },
