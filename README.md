@@ -53,6 +53,10 @@ yarn build
 yarn lint-ci
 ```
 
+# Current known issues, technical debt and other
+- Strapi currently don't provide a refresh token for the JWT, and therefore to combat this issue we have set the JWT token lifetime to be >1year. This however, should be addressed at some point, maybe when strapi has implemented a refresh token
+- There is no registration endpoint for companies, so companies currently can not register on the backend. There is a form on the front-end but it has not been linked to Strapi.
+
 ## Tech stack and dependencies
 The project is built on
 
