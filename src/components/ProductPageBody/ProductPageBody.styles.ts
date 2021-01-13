@@ -2,32 +2,11 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      [theme.breakpoints.down('xl')]: {
-        display: 'flex',
-        marginLeft: '10%',
-        marginRight: '10%',
-        marginTop: '4%',
-        paddingLeft: '2%',
-      },
-      [theme.breakpoints.down('sm')]: {
-        display: 'flex',
-        marginLeft: '10px',
-        marginRight: '10px',
-        marginTop: '10px',
-      },
-      [theme.breakpoints.up('xl')]: {
-        display: 'flex',
-        marginLeft: '20%',
-        marginRight: '20%',
-        marginTop: '4%',
-        paddingLeft: '2%',
-      },
-    },
-    root1: {
-      marginTop: '2%',
+    container: {
+      marginTop: theme.spacing(2),
     },
     details: {
+      padding: theme.spacing(3),
       display: 'flex',
       flexDirection: 'column',
     },
@@ -38,6 +17,15 @@ export const useStyles = makeStyles((theme: Theme) =>
     content: {
       display: 'flex',
       flex: '1 0 auto',
+    },
+    icon: {
+      color: 'white',
+    },
+    chipContainer: {
+      display: 'flex',
+      gap: theme.spacing(1),
+      flexWrap: 'wrap',
+      marginTop: theme.spacing(1),
     },
     card: {
       display: 'flex',
