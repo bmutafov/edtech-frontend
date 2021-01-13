@@ -2,27 +2,37 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      [theme.breakpoints.down('xl')]: {
-        display: 'flex',
-        marginLeft: '10%',
-        marginRight: '10%',
-        marginTop: '4%',
-        paddingLeft: '2%',
-      },
+    paper: {
+      padding: theme.spacing(2),
+    },
+    container: {
+      display: 'flex',
+      gap: theme.spacing(3),
       [theme.breakpoints.down('sm')]: {
-        display: 'flex',
-        marginLeft: '10px',
-        marginRight: '10px',
-        marginTop: '10px',
+        flexDirection: 'column',
       },
-      [theme.breakpoints.up('xl')]: {
-        display: 'flex',
-        marginLeft: '20%',
-        marginRight: '20%',
-        marginTop: '4%',
-        paddingLeft: '2%',
-      },
+    },
+    leftCol: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: theme.spacing(2),
+    },
+    rightCol: {
+      flex: 5,
+    },
+    infoBox: {
+      flex: 2,
+    },
+    ratingBox: {
+      display: 'flex',
+      gap: theme.spacing(2),
+      alignItems: 'center',
+    },
+    categoryChip: {
+      display: 'flex',
+      gap: theme.spacing(1),
+      flexWrap: 'wrap',
     },
     root1: {
       marginTop: '2%',
@@ -45,6 +55,12 @@ export const useStyles = makeStyles((theme: Theme) =>
     cover: {
       width: 151,
       height: 140,
+    },
+    companyInfo: {
+      display: 'flex',
+      gap: theme.spacing(1),
+      marginTop: theme.spacing(1),
+      alignItems: 'center',
     },
   })
 );

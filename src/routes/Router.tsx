@@ -18,8 +18,9 @@ const Router: React.FC = () => {
       <Route exact path="/register" component={RegisterForm} />
       <Route exact path="/company" component={ForCompanyPage} />
       <Route exact path="/products" component={SearchProductsPage} />
-      <Route exact path="/product" component={ProductPage} />
+      <Route path="/product/:productId" component={ProductPage} />
       <Route exact path="/about" component={AboutPages} />
+      {/* <Route path="*" component={Homepage} /> */}
     </BrowserRouter>
   );
 };

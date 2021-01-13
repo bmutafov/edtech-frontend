@@ -60,6 +60,7 @@ const ProductBrowser: React.FC = () => {
     () =>
       products.map((product) => (
         <ProductListItem
+          id={product.id}
           key={product.id}
           title={product.name}
           byUser={product.user.username}

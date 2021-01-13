@@ -4,13 +4,15 @@ import { Rating } from '@material-ui/lab';
 import { useStyles } from './ProductListItem.styles';
 import useTexts from '../../../hooks/useTexts';
 import { Fade } from 'react-awesome-reveal';
-import useResponsive from '../../../hooks/useResponsive';
 import { theme } from '../../../utils/theme';
 import { ICategory } from '../../../schemas';
 import { Label } from '@material-ui/icons';
 import getBaseUri from '../../../utils/getBaseUri';
+import { useHistory } from 'react-router-dom';
+import defaultImage from '../../../images/no-image.jpg';
 
 interface Props {
+  id: string;
   title?: string;
   byUser?: string;
   description?: string;
@@ -27,18 +29,25 @@ const getShortDescription = (description = ''): string => {
 };
 
 const ProductListItem: React.FC<Props> = ({
+  id,
   title,
   byUser,
   description,
   rating,
   reviews,
   categories,
-  imageURL = '/uploads/y9_Dp_T_af960252c8.jpg',
+  imageURL,
 }) => {
+  const history = useHistory();
   const classes = useStyles();
   const texts = useTexts();
-  const { isTabletOrMobile } = useResponsive();
-  const imageSize = isTabletOrMobile ? 80 : 150;
+
+  const productLink = `/product/${id}`;
+  const image = imageURL ? getBaseUri() + imageURL : defaultImage;
+
+  const handleRedirect = () => {
+    history.push(productLink);
+  };
 
   const ratingComponent = useMemo(
     () => (
@@ -56,14 +65,8 @@ const ProductListItem: React.FC<Props> = ({
     <Fade direction="up" duration={500}>
       <Paper elevation={0} className={classes.paper}>
         <Box className={classes.flexWrap}>
-          <ButtonBase>
-            <img
-              className={classes.img}
-              alt="complex"
-              src={getBaseUri() + imageURL}
-              width={imageSize}
-              height={imageSize}
-            />
+          <ButtonBase onClick={handleRedirect}>
+            <img className={classes.img} alt="complex" src={image} />
           </ButtonBase>
           <Box
             marginBottom={theme.spacing.$1}
@@ -73,7 +76,7 @@ const ProductListItem: React.FC<Props> = ({
             justifyContent="space-between"
           >
             <Box>
-              <Link href="#" variant="h6" color="inherit" display="block">
+              <Link href={productLink} variant="h6" color="inherit" display="block">
                 {title}
               </Link>
               <Typography variant="caption" color="textSecondary" gutterBottom>
@@ -92,13 +95,7 @@ const ProductListItem: React.FC<Props> = ({
             <Box className={classes.categoryChip}>
               {categories &&
                 categories.map((category) => (
-                  <Chip
-                    icon={<Label></Label>}
-                    key={category.id}
-                    // variant="outlined"
-                    size="small"
-                    label={category.name}
-                  />
+                  <Chip icon={<Label></Label>} key={category.id} size="small" label={category.name} />
                 ))}
             </Box>
           </Box>
@@ -113,7 +110,7 @@ const ProductListItem: React.FC<Props> = ({
                   {reviews} {texts.productsShowcaseGridreview}
                 </Typography>
               </Box>
-              <Button variant="outlined" color="secondary">
+              <Button variant="outlined" color="secondary" onClick={handleRedirect}>
                 {texts.productShowcaseViewButtonText}
               </Button>
             </Box>

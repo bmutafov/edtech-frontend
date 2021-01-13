@@ -174,7 +174,6 @@ const AddProduct: React.FC = () => {
                 className={classes.textBox}
                 id="description"
                 multiline
-                rows={4}
                 placeholder={texts.addProductDescriptionPlaceholder}
               />
             </TextFieldWrapper>

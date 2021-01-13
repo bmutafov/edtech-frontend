@@ -19,6 +19,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       maxWidth: '100%',
       maxHeight: '100%',
       borderRadius: '5px',
+      width: 150,
+      height: 150,
+      objectFit: 'cover',
+      [theme.breakpoints.down('sm')]: {
+        width: 80,
+        height: 80,
+      },
     },
     flexWrap: {
       display: 'flex',
