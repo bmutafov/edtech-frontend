@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import Homepage from '../pages/Homepage';
+import ProductPage from '../pages/ProductPage';
 import AddProductPage from '../pages/AddProductPage';
 import ForCompanyPage from '../pages/ForCompanyPage';
 import SearchProductsPage from '../pages/SearchProductsPage';
@@ -17,6 +18,7 @@ const Router: React.FC = () => {
       <Route exact path="/register" component={RegisterForm} />
       <Route exact path="/company" component={ForCompanyPage} />
       <Route exact path="/products" component={SearchProductsPage} />
+      <Route exact path="/product" component={ProductPage} />
       <Route exact path="/about" component={AboutPages} />
     </BrowserRouter>
   );
