@@ -107,7 +107,7 @@ const NavBarUserActions: React.FC = () => {
         {registerFormSwitch ? (
           <RegisterForm onSuccess={() => setIsRegisterDialogOpen(false)} />
         ) : (
-          <RegisterFormCompany />
+          <RegisterFormCompany onSuccess={() => setIsRegisterDialogOpen(false)} />
         )}
 
         <Switch checked={registerFormSwitch} onChange={handleRegisterFormSwitch} color="primary" />
