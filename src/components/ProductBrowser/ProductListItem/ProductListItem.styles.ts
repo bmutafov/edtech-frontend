@@ -8,6 +8,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     paper: {
       background: '#fcfcfc',
       padding: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+    },
+    ratingText: {
+      fontSize: '1rem',
     },
     img: {
       margin: 'auto',
@@ -21,6 +25,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       gap: theme.spacing(2),
       width: '100%',
       height: '100%',
+      flexWrap: 'wrap',
+    },
+    categoryChip: {
+      display: 'flex',
+      gap: theme.spacing(1),
       flexWrap: 'wrap',
     },
   })

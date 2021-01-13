@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useState } from 'react';
-import config from '../config/config';
+import getBaseUri from '../utils/getBaseUri';
+import useAuthState from '../Auth/useAuthState';
 import isDev from '../utils/isDev';
 
 export type PostRequestAction<T> = [
@@ -17,6 +18,8 @@ export type PostRequestAction<T> = [
  * @return {Array} The result, loading state and error state as an array which can be destructured
  */
 const usePostRequest = <DataType>(endpoint: string, validateStatus?: boolean): PostRequestAction<DataType> => {
+  const { authToken } = useAuthState();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>(undefined);
 
@@ -26,14 +29,18 @@ const usePostRequest = <DataType>(endpoint: string, validateStatus?: boolean): P
    */
   const postData = async (data: DataType) => {
     setIsLoading(true);
-    const url = config.baseURI + endpoint;
+    const url = getBaseUri() + endpoint;
 
     try {
       const options: AxiosRequestConfig | undefined = validateStatus
         ? {
             validateStatus: () => true,
           }
-        : undefined;
+        : {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          };
 
       return await axios.post(url, data, options);
     } catch (e) {

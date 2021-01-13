@@ -66,6 +66,8 @@ const ProductBrowser: React.FC = () => {
           description={product.description}
           reviews={product.reviews.length}
           rating={product.rating}
+          categories={product.categories}
+          imageURL={product.images[0]?.url as string}
         />
       )),
     [products]

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { AppBar, Drawer, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Container, Drawer, IconButton, Toolbar } from '@material-ui/core';
 import useTexts from '../../hooks/useTexts';
 import { useStyles } from './NavBar.styles';
 import NavBarUserActions from './NavBarUserActions';
@@ -43,7 +43,9 @@ const NavBar: React.FC = () => {
 
   return (
     <AppBar position="static" elevation={0}>
-      {isTabletOrMobile ? mobileLayout : desktopLayout}
+      <Container maxWidth="lg" disableGutters>
+        {isTabletOrMobile ? mobileLayout : desktopLayout}
+      </Container>
     </AppBar>
   );
 };

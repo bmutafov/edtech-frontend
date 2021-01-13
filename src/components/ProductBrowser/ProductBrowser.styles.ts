@@ -27,7 +27,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     flexContainer: {
       display: 'flex',
       flexDirection: 'column',
-      gap: theme.spacing(2),
     },
     emptyState: {
       display: 'block',

@@ -5,19 +5,43 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
+    labelWrapper: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    },
+    chips: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: theme.spacing(1),
+    },
+    menuItemSelected: {
+      background: '#f88ad0',
+    },
     textField: {
-      width: 300,
-      height: 40,
+      maxHeight: '200px',
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'wrap',
+      [theme.breakpoints.down('sm')]: {
+        maxHeight: '1200px',
+      },
     },
-    textBox: {
-      width: 400,
+    fileInfoBox: {
+      display: 'flex',
+      width: '100%',
+      alignItems: 'center',
+      gap: theme.spacing(1),
+      background: '#fcfcfc',
+      padding: theme.spacing(1),
+      marginLeft: theme.spacing(1),
+      justifyContent: 'space-between',
     },
+    textBox: {},
     paper: {
       margin: 'auto',
-      marginTop: 50,
       padding: theme.spacing(2),
       color: theme.palette.text.secondary,
-      width: '60%',
     },
   })
 );

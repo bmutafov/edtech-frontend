@@ -1,5 +1,3 @@
-![Build and Deploy](https://github.com/mutafow/edtech-frontend/workflows/Build%20and%20Deploy/badge.svg)
-
 # EdTech front-end repository
 
 Welcome to the EdTech front-end repository. This is the codebase of the front end, of the EdTech project. EdTech's concept is to connect student, teachers and other people from the educational industry, to share reviews and thoughts on different developments and technologies within many categories. Think of something like Tripadvisor but for technology. 
@@ -72,6 +70,14 @@ Since we have ESLint and Prettier installed on the project, so we can enforce st
 Also, make sure to avoid pushing code containing warnings or errors. 
 
 # Documentation
+## Generating data types from Strapi
+Since, we use TypeScript it would be great to know the return type for each endpoint. There's a npm module that is developed to that: [strapi-to-typescript - npm (npmjs.com)](https://www.npmjs.com/package/strapi-to-typescript). We can use it to achieve that for most endpoints by running the command `yarn sts`. To get this command to work however, you will need the following prerequsites:
+- have installed strapi-to-typescript: `npm install -g strapi-to-typescript`
+- have the Strapi repository and frontend repository in sibling directories with the following names, eg:
+	- **/parent-directory**
+		- edtech-api/
+		- edtech-frontend/
+
 ## Preserving state
 To preserve state, we chose to use contexts instead of additional dependencies and frameworks like Redux. Contexts provide ideal way to manage and preserve state throughout your whole app. Combined with hooks, it makes the development really easy. 
 
@@ -95,3 +101,6 @@ Since we need to have texts and heading to be able to be changed easily from the
  - `defaultTexts.ts` - when the backend cannot be reached (or something else happened, just a safety net), we have this file which contains default values for all the editable texts on the website. **This file also provides the type definition for the return value of `useTexts()`**
  - Each editable text in the website, should be added as an entry to the `defaulTexts.ts` file, then in the component itself used by importing the `const texts = useTexts()` hook and then, where the text is needed use `{texts.myTextKey}`, where myTextKey is the name of your entry in the defaultTexts file.
  - For naming the keys, try having them start with the name of the component, for instance NavBar's component title's entry in the file is `navBarTitleText`. 
+
+## /product filtering
+To filter products, we use Strapi's recommendation use of parameters, described in this guide: [Parameters | Strapi Developer Documentation](https://strapi.io/documentation/developer-docs/latest/content-api/parameters.html#available-operators). We save the active filters into the component state, and then when the "Apply" button is clicked, the filter query to the db is updated via the `useFilters()` hook  in **/ProductBrowser** directory. Then the data is populated via the component.

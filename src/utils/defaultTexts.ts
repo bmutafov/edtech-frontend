@@ -3,9 +3,9 @@ const defaultTexts = {
   navBarTitle: 'EdTech',
 
   // Hero.tsx
-  heroTitle: 'Find the right products  for your academics needs',
-  heroButton: 'Explore products',
-  heroSubtitle: 'Browse products by category',
+  heroTitleHomePage: 'Find the right products  for your academics needs',
+  heroButtonHomePage: 'Explore products',
+  heroSubtitleHomePage: 'Browse products by category',
 
   // TrendingProducts.tsx
   trendingProductsTitle: 'Trending products',
@@ -48,6 +48,8 @@ const defaultTexts = {
   registerErrorMinLength: 'Your password must contain at least 6 characters.',
   registerErrorPasswordMatch: "Passwords don't match",
   registerErrorEmailNotValid: 'Please enter valid email address',
+  registerErrorPhoneLength: 'Phone number can be maximum 15 characters long',
+  registerErrorPhonePattern: "Phone number can include only numbers, spaces and '+' symbol",
 
   // NavBarUserActions.tsx
   navBarUserActionsLogin: 'Login',
@@ -60,6 +62,7 @@ const defaultTexts = {
   navBarUserActionsLoginModalSidebarDescription: 'Glad to see you back',
   navBarUserActionsRegisterModalSidebarDescription: 'Excited to see new members joining in',
   navBarUserActionsConfirmLogoutTitle: 'Are you sure you want to logout?',
+  navBarUserActionsLoggedInAsText: 'Logged in as:',
 
   //HeroFc.tsx
   herofcTitle: 'Grow yout business better with EdTech',
@@ -70,19 +73,23 @@ const defaultTexts = {
   optionListTitle: 'Company Options',
 
   //AddProducts.tsx
-  addProductFormTitle: 'Add Products',
+  addProductFormTitle: 'Add your product',
   addProductProductLabel: 'Product Name',
   addProductCategory: 'Category',
   addProductGroup: 'Group',
   addProductDescription: 'Description',
-  addProductButton: 'Upload',
+  addProductUploadLabel: 'Image',
+  addProductUploadButtonText: 'Upload',
   addProductPrice: 'Price Range',
   addProductWebsite: 'Website',
   addProductDevelopment: 'Development Stage',
   addProductsSupportedPlatform: 'Supported Platforms',
-  addProductsSelectPlaceholder: 'Select Category',
+  addProductsCategoryPlaceholder: 'Select Category',
   addProductsWebsitePlaceholder: 'Link to Website',
   addProductsLabelPlaceholder: 'What is the official name of your product',
+  addProductDescriptionPlaceholder: 'Describe what this product is about in more detail',
+  addProductSubmitButtonText: 'Submit',
+  addProductSuccessAlert: 'The product was added successfully to EdTechFinder!',
 
   //ProductShowcaseGrid
   productShowcaseGridTitle: 'Product',
@@ -148,6 +155,12 @@ const defaultTexts = {
   productInfoCardGradeSubtitle: 'Group1, Group2',
   productInfoCardPlatform: 'Platform',
   productInfoCardPlatformSubtitle: 'iOS, Android, Desktop',
+
+  //AboutPage.tsx
+  aboutPageTitle: 'We Are ' + '\n' + 'Edtech',
+  aboutPageSubtitle: 'Join the leading review platform of Educational Technologies',
+  aboutPageBodyText:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo',
 };
 
 export default defaultTexts;
