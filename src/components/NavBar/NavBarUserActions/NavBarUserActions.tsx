@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Dialog, DialogActions, DialogTitle, IconButton } from '@material-ui/core';
+import { Avatar, Box, Button, Dialog, DialogActions, DialogTitle, IconButton, Switch } from '@material-ui/core';
 import { EmojiPeople, ExitToApp, PersonAdd } from '@material-ui/icons';
 import React, { useCallback, useMemo, useState } from 'react';
 import useAuthActions from '../../../Auth/useAuthActions';
@@ -8,6 +8,7 @@ import useTexts from '../../../hooks/useTexts';
 import { theme } from '../../../utils/theme';
 import Login from '../../LoginForm';
 import RegisterForm from '../../RegisterForm';
+import RegisterFormCompany from '../../RegisterFormCompany';
 import ModalForm from './ModalForm/ModalForm';
 
 const NavBarUserActions: React.FC = () => {
@@ -19,7 +20,11 @@ const NavBarUserActions: React.FC = () => {
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
+  const [registerFormSwitch, setRegisterFormSwitch] = React.useState(true);
 
+  const handleRegisterFormSwitch = useCallback(() => {
+    setRegisterFormSwitch((prevSwitch) => !prevSwitch);
+  }, []);
   const handleSwitchToRegister = useCallback(() => {
     setIsLoginDialogOpen(false);
     setIsRegisterDialogOpen(true);
@@ -99,7 +104,13 @@ const NavBarUserActions: React.FC = () => {
         sidebarDescription={texts.navBarUserActionsRegisterModalSidebarDescription}
         maxWidth="lg"
       >
-        <RegisterForm onSuccess={() => setIsRegisterDialogOpen(false)} />
+        {registerFormSwitch ? (
+          <RegisterForm onSuccess={() => setIsRegisterDialogOpen(false)} />
+        ) : (
+          <RegisterFormCompany />
+        )}
+
+        <Switch checked={registerFormSwitch} onChange={handleRegisterFormSwitch} color="primary" />
       </ModalForm>
       {snackBarComponent}
       {loggedIn ? loggedInContent : loggedOutContent}
