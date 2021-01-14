@@ -151,6 +151,23 @@ const defaultTexts = {
   aboutPageSubtitle: 'Join the leading review platform of Educational Technologies',
   aboutPageBodyText:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo',
+
+  //WriteReviewBody.tsx
+  writeReviewBodyTitle: 'Review Title',
+  writeReviewBodyUsability: 'Usability',
+  writeReviewBodyEngagement: 'Engagement',
+  writeReviewBodyEffectiveness: 'Effectiveness',
+  writeReviewBodyOverall: 'Overall Rating',
+  writeReviewBodySubtitle: 'Ad eos saepe lucilius, noster postulant philosophia ea usu',
+  writeReviewBodyDescription: 'Review Description',
+  writeReviewEducationalInstitution: 'Name Of Educational Institution',
+  writeReviewNumberOfPeople: 'Number of people participating',
+  writeReviewBodyTitle2: 'Great For',
+  writeReviewBodyTitle3: 'Drawbacks',
+  writeReviewBodyDisabledText1: 'Indidvidual learning',
+  writeReviewBodyDisabledText2: 'Missing content',
+  writeReviewBodyTips: 'Tips to write your review',
+  writeReviewBodySubmit: 'Submit Review',
 };
 
 export default defaultTexts;
