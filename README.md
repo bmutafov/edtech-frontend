@@ -55,7 +55,19 @@ yarn lint-ci
 
 # Current known issues, technical debt and other
 - Strapi currently don't provide a refresh token for the JWT, and therefore to combat this issue we have set the JWT token lifetime to be >1year. This however, should be addressed at some point, maybe when strapi has implemented a refresh token
+- If the user is logged in on page load, there is no check whether that auth token is still valid (token can become invalid if the lifespan has passed or if the server has crashed down and has been restarted).
 - There is no registration endpoint for companies, so companies currently can not register on the backend. There is a form on the front-end but it has not been linked to Strapi.
+
+# Short-term priorities
+- Company login & register (both Strapi and front-end)
+- Add product page more fields
+- Add product page on success and on error UI feedback
+- Fetch all neccessary data for a single product (currently only the few present fields are fetched, the other is dummy data)
+- Single product page - view all reviews
+- Add review to a product
+- Edit user/company information
+- Finish about / for company pages
+- Add all defaultText entries to strapi's /cms-texts endpoint
 
 ## Tech stack and dependencies
 The project is built on
@@ -102,9 +114,10 @@ Since we need to have texts and heading to be able to be changed easily from the
 
 - `useTexts()` hook which makes a request to the backend and fetches the latests text changes
   - Relies on `TextsContext` which saves the state of the currently downloaded words
- - `defaultTexts.ts` - when the backend cannot be reached (or something else happened, just a safety net), we have this file which contains default values for all the editable texts on the website. **This file also provides the type definition for the return value of `useTexts()`**
+ - `defaultTexts.ts` - the default texts which the page uses when there are missing entries of the fetched data from the backend. **This file also provides the type definition for the return value of `useTexts()`**
  - Each editable text in the website, should be added as an entry to the `defaulTexts.ts` file, then in the component itself used by importing the `const texts = useTexts()` hook and then, where the text is needed use `{texts.myTextKey}`, where myTextKey is the name of your entry in the defaultTexts file.
  - For naming the keys, try having them start with the name of the component, for instance NavBar's component title's entry in the file is `navBarTitleText`. 
+ - The hook makes request to the **/cms-texts** endpoint, which overwrites the received values on top of defaultTexts and then renders the website. Each of the defaultTexts.ts entries must be manually added to the Strapi /cms-texts endpoint as well, so administrators can configure the texts.
 
 ## /product filtering
 To filter products, we use Strapi's recommendation use of parameters, described in this guide: [Parameters | Strapi Developer Documentation](https://strapi.io/documentation/developer-docs/latest/content-api/parameters.html#available-operators). We save the active filters into the component state, and then when the "Apply" button is clicked, the filter query to the db is updated via the `useFilters()` hook  in **/ProductBrowser** directory. Then the data is populated via the component.
