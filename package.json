@@ -19,7 +19,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-responsive": "^8.0.2",
     "@types/react-router-dom": "^5.1.6",
-    "axios": "^0.21.0",
+    "axios": "^0.21.2",
     "bootstrap": "^4.5.3",
     "csstype": "^3.0.5",
     "material-ui-popup-state": "^1.7.1",
